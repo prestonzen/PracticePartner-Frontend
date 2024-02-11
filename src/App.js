@@ -6,7 +6,7 @@ import Toolbar from './components/Toolbar';
 
 function App() {
   return (
-    <div className="bg-primary-container min-h-screen flex flex-col">
+    <div className="bg-primary-container min-h-screen flex flex-col pl-2">
       <Navbar />
       <Toolbar />
       <FooterNavbar />

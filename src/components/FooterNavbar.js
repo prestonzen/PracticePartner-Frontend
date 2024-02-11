@@ -7,43 +7,43 @@ const FooterNavbar = () => {
       <div className="container mx-auto py-4 flex justify-center">
         <ul className="flex flex-col md:flex-row md:space-x-4">
           <li>
-            <a href="#" className="hover:text-gray-400">Option 1</a>
+            <a href="#" className="hover:text-gray-400">Home</a>
           </li>
           <li className='hidden lg:block'>
             <span className="text-gray-400">|</span>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-400">Option 2</a>
+            <a href="#" className="hover:text-gray-400">About Us</a>
           </li>
           <li className='hidden lg:block'>
             <span className="text-gray-400">|</span>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-400">Option 3</a>
+            <a href="#" className="hover:text-gray-400">Contact</a>
           </li>
           <li className='hidden lg:block'>
             <span className="text-gray-400">|</span>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-400">Option 4</a>
+            <a href="#" className="hover:text-gray-400">Pricing</a>
           </li>
           <li className='hidden lg:block'>
             <span className="text-gray-400">|</span>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-400">Option 5</a>
+            <a href="#" className="hover:text-gray-400">Features</a>
           </li>
           <li className='hidden lg:block'>
             <span className="text-gray-400">|</span>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-400">Option 6</a>
+            <a href="#" className="hover:text-gray-400">Privacy Policy</a>
           </li>
           <li className='hidden lg:block'>
             <span className="text-gray-400">|</span>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-400">Option 7</a>
+            <a href="#" className="hover:text-gray-400">Terms of Use</a>
           </li>
         </ul>
       </div>
