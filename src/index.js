@@ -5,10 +5,13 @@ import ReactDOM from 'react-dom';
 import './index.css'; // Import your custom CSS file
 import App from './App'; // Import your main component
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from "react-router-dom"
 
 ReactDOM.render(
   <React.StrictMode>
+  <BrowserRouter>
     <App />
+  </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

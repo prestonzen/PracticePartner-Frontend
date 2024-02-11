@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -24,24 +25,24 @@ const Navbar = () => {
           }`}
         >
           <li>
-            <a href="#" className="hover:text-gray-400">
+            <Link to="/" className="hover:text-gray-400">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-400">
+            <Link to="/features" className="hover:text-gray-400">
               Features
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-400">
-              About Us
-            </a>
+          <Link to="/about-us" className="hover:text-gray-400">
+            About Us
+          </Link>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-400">
+            <Link to="/pricing" className="hover:text-gray-400">
               Pricing
-            </a>
+            </Link>
           </li>
         </ul>
 
