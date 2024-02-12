@@ -3,6 +3,7 @@ import './App.css';
 import FooterNavbar from './components/FooterNavbar';
 import Navbar from './components/Navbar';
 import Toolbar from './components/Toolbar';
+import Toolbar2 from './components/SuperAdmin-UserManagement.js';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import AboutUs from './pages/AboutUs';
 import Home from './pages/Home';
@@ -15,7 +16,6 @@ import TermsofUse from './pages/TermsofUse';
 function App() {
   return (
     <div className="bg-primary-container min-h-screen flex flex-col pl-2">
-    
       <Navbar />
       <div className='flex'>
         <Toolbar />
