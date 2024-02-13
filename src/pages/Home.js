@@ -2,6 +2,7 @@ import React from "react";
 import SectionWithTextAndPicture from "../components/SectionWithTextAndPicture";
 import SectionWithText from "../components/SectionWithText";
 import PriceInfoCard from "../components/PriceInfoCard";
+import NewsletterForm from "../components/NewsletterForm";
 
 export default function Home() {
   return (
@@ -136,9 +137,26 @@ export default function Home() {
         buttonText="See More of Our Features"
         buttonLink="/logo-design"
       />
-      
-      <div className="flex">
-        <div className="flex-1">
+      <section className="flex flex-col justify-center text-center text-zinc-900 my-12 mt-48">
+      <header className="w-full text-6xl leading-[63.84px] max-md:max-w-full max-md:text-4xl">
+        Transparent, Flexible Pricing
+      </header>
+      <div className="mt-6 w-full text-base leading-6 max-md:max-w-full">
+        <h2 className="text-2xl leading-7 text-zinc-900">
+          Empower Your Practice with Always-On, Affordable Expertise
+        </h2>
+        <div className="leading-6 text-zinc-900">
+          Discover the power of having an always-accessible business coach with Practice Partner. Our platform offers you the unique advantage of round-the-clock business guidance and unlimited resources, all at a fraction of the cost of traditional coaching. With Practice Partner, you're not just saving on expenses; you're investing in a tool that's always ready when you are, providing tailored advice and solutions for your private practice.
+        </div>
+        <br />
+        <br />
+        <div className="leading-6 text-zinc-900">
+          Embrace the future of entrepreneurship with Practice Partner – where expert guidance is always just a click away.
+        </div>
+      </div>
+    </section>
+      <div className="flex md:flex-row sm:flex-col sm:space-y-6">
+        <div className="md:flex-1">
           <div className="h-full">
             <PriceInfoCard
               title="Free Trial"
@@ -150,7 +168,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex-1">
+        <div className="md:flex-1">
           <div className="h-full">
             <PriceInfoCard
               title="Practice Accelerator"
@@ -165,7 +183,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="mt-6">
+      <div className="mt-6 mb-48">
         <PriceInfoCard
           title="A Personal Touch"
           subtitle=""
@@ -196,6 +214,17 @@ export default function Home() {
           buttonText="Contact Us Today"
         />
       </div>
+      <div className="mb-48 mt-16">
+      <SectionWithText 
+      title="Ready to Start Your Journey?"
+      text="Join Practice Partner today and transform your entrepreneurial dream into reality. Our platform is here to guide
+       you every step of the way."
+        buttonText="Begin Your Success Story"
+        buttonLink="/logo-design"
+        centerAligned={true}
+      />
+      </div>
+      <NewsletterForm />
     </div>
   );
 }

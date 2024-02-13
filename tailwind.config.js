@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         primary: '#006590', 
       },
+      placeholderFontWeight: ['responsive', 'hover', 'focus'],
     },
     backgroundColor: theme => ({
       ...theme('colors'),
@@ -23,5 +24,6 @@ module.exports = {
       
       }),
   },
-  plugins: [],
+  plugins: [
+  ],
 }

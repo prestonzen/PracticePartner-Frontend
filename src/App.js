@@ -20,7 +20,7 @@ function App() {
     <div className="bg-primary-container min-h-screen flex flex-col pl-2">
       <Navbar />
       <div className="flex">
-        <Toolbar />
+        {/* <Toolbar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
