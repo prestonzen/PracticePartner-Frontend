@@ -1,0 +1,50 @@
+import React from "react";
+
+const PriceInfoCard = ({
+  title,
+  subtitle,
+  text,
+  pricing,
+  months,
+  discounts,
+  buttonText,
+}) => {
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6 mx-4 h-full">
+      <h2 className="text-2xl font-bold mb-4 text-center">{title}</h2>
+      <div className="border-b border-gray-300 mb-4"></div>
+      <h3 className="text-lg font-bold mb-2 text-center">{subtitle}</h3>
+      <p className="mb-4 text-center">{text}</p>
+      <div className="flex justify-around">
+        <div className="grid grid-cols-3 gap-4 mb-4">
+          {pricing && (
+            <>
+              <div className="">
+                <h4 className="text-lg font-semibold">{pricing[0]}</h4>
+                {months && <p className="text-gray-500">{months[0]}</p>}
+                {discounts && <p className="text-gray-500">{discounts[0]}</p>}
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold">{pricing[1]}</h4>
+                {months && <p className="text-gray-500">{months[1]}</p>}
+                {discounts && <p className="text-gray-500">{discounts[1]}</p>}
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold">{pricing[2]}</h4>
+                {months && <p className="text-gray-500">{months[2]}</p>}
+                {discounts && <p className="text-gray-500">{discounts[2]}</p>}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <button className="bg-primary text-white font-bold text-sm rounded-full px-6 py-3 hover:bg-primary-light transition-colors duration-300">
+          {buttonText}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default PriceInfoCard;

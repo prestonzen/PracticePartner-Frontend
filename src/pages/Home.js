@@ -1,6 +1,7 @@
 import React from "react";
 import SectionWithTextAndPicture from "../components/SectionWithTextAndPicture";
 import SectionWithText from "../components/SectionWithText";
+import PriceInfoCard from "../components/PriceInfoCard";
 
 export default function Home() {
   return (
@@ -99,21 +100,102 @@ export default function Home() {
       />
       <SectionWithText
         title="Comprehensive Business Advisor"
-        text={<>
-        <p style={{ fontSize: '1.5em' }}>All-in-One Entrepreneurial Support</p>
-          <ul>
-        <li><strong>Incorporation Guidance:</strong> Navigate the complexities of setting up your practice.</li>
-        <li><strong>Pricing Strategies:</strong> Learn how to effectively price your services.</li>
-        <li><strong>Website Creation Tips:</strong> Establish a strong online presence.</li>
-        <li><strong>Effective Marketing Strategies:</strong> Reach your target audience and grow your client base.</li>
-        <li><strong>Operational Tools Suggestions:</strong> Streamline your day-to-day management.</li>
-        <li><strong>Tax and Legal Compliance:</strong> Stay informed about your fiscal responsibilities.</li>
-      </ul>
-        </>}
+        text={
+          <>
+            <p style={{ fontSize: "1.5em" }}>
+              All-in-One Entrepreneurial Support
+            </p>
+            <ul>
+              <li>
+                <strong>Incorporation Guidance:</strong> Navigate the
+                complexities of setting up your practice.
+              </li>
+              <li>
+                <strong>Pricing Strategies:</strong> Learn how to effectively
+                price your services.
+              </li>
+              <li>
+                <strong>Website Creation Tips:</strong> Establish a strong
+                online presence.
+              </li>
+              <li>
+                <strong>Effective Marketing Strategies:</strong> Reach your
+                target audience and grow your client base.
+              </li>
+              <li>
+                <strong>Operational Tools Suggestions:</strong> Streamline your
+                day-to-day management.
+              </li>
+              <li>
+                <strong>Tax and Legal Compliance:</strong> Stay informed about
+                your fiscal responsibilities.
+              </li>
+            </ul>
+          </>
+        }
         buttonText="See More of Our Features"
         buttonLink="/logo-design"
       />
-
+      
+      <div className="flex">
+        <div className="flex-1">
+          <div className="h-full">
+            <PriceInfoCard
+              title="Free Trial"
+              subtitle="Explore what you can achieve"
+              text="Dive into the world of Practice Partner with our Trial Plan. You'll get access to 12 queries  per month with our generative AI,
+         giving you a glimpse into the expert advice and insights available at your fingertips. 
+         It's a perfect way to experience firsthand how our AI can assist in your journey."
+              buttonText="Get Started"
+            />
+          </div>
+        </div>
+        <div className="flex-1">
+          <div className="h-full">
+            <PriceInfoCard
+              title="Practice Accelerator"
+              subtitle="Operate with expertise at your fingertips"
+              text="Your comprehensive toolkit for establishing a successful practice. Unlimited access to Practice Partner's capabilities 
+        equipping you with essential tools and support for building a strong, sustainable business."
+              pricing={["$350", "$600", "$980"]}
+              months={["3 months", "6 months", "12 months"]}
+              discounts={["", "20% discount", "30% discount"]}
+              buttonText="Get Started"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="mt-6">
+        <PriceInfoCard
+          title="A Personal Touch"
+          subtitle=""
+          text={
+            <>
+              <p>
+                Designed for those seeking a human touch in their
+                entrepreneurial journey. Gain direct access to experienced
+                business experts who provide personalized, one-on-one guidance
+                going beyond AI capabilities, offering immediate best practices
+                and experiential knowledge tailored to your specific needs. Our
+                experts will work closely with you, helping to navigate the
+                complex business landscape with insights and strategies that are
+                both time-tested and innovative. <br />
+                Unlock the potential of your private practice with our team of
+                seasoned experts, who bring years of firsthand experience in
+                launching and growing successful practices. As practitioners
+                themselves, they deeply understand the challenges and
+                opportunities. Embrace our unique 'Ready-Set-Treat' methodology,
+                designed to accelerate your practice launch in a way that's not
+                just rapid, but also effective and efficient. Partner with us to
+                transform your vision into a thriving practice.
+              </p>
+              <br />
+              <p>Navigate with Confidence: Your Personal Expert Awaits</p>
+            </>
+          }
+          buttonText="Contact Us Today"
+        />
+      </div>
     </div>
   );
 }
