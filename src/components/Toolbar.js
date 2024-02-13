@@ -1,11 +1,11 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Toolbar = () => {
   const location = useLocation();
 
   // Define an array of paths where you want to hide the toolbar
-  const pathsToHideToolbar = ['/signup', '/login'];
+  const pathsToHideToolbar = ['/signup', '/login', '/', '/features','/about-us','/pricing', 'contact', '/privacy-policy', '/termsofuse'];
 
   // Check if the current path is in the array of paths to hide the toolbar
   const shouldHideToolbar = pathsToHideToolbar.includes(location.pathname);
@@ -44,9 +44,9 @@ const Toolbar = () => {
                 />
               </g>
             </svg>
-            <a href="#" className="hover:text-gray-600 text-md">
+            <Link to="/generate-image" className="hover:text-gray-600 text-md">
               Image Generator
-            </a>
+            </Link>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -74,9 +74,9 @@ const Toolbar = () => {
                 />
               </g>
             </svg>
-            <a href="#" className="hover:text-gray-600 text-md">
+            <Link to="/chat" className="hover:text-gray-600 text-md">
               Chat
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -106,9 +106,9 @@ const Toolbar = () => {
               />
             </g>
           </svg>
-          <a href="#" className="hover:text-gray-600 text-md">
+          <Link to="/history" className="hover:text-gray-600 text-md">
             History
-          </a>
+          </Link>
         </div>
 
         <div className="flex items-center space-x-2">
@@ -136,9 +136,9 @@ const Toolbar = () => {
               />
             </g>
           </svg>
-          <a href="#" className="hover:text-gray-600 text-md">
+          <Link to="/account" className="hover:text-gray-600 text-md">
             Account
-          </a>
+          </Link>
         </div>
         <hr className=" border-white" />
         <div className="flex items-center space-x-2">
@@ -166,9 +166,9 @@ const Toolbar = () => {
               />
             </g>
           </svg>
-          <a href="#" className="hover:text-gray-600 text-md">
+          <Link to="/logout" className="hover:text-gray-600 text-md">
             Logout
-          </a>
+          </Link>
         </div>
       </div>
     </div>

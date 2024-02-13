@@ -3,7 +3,7 @@ import './App.css';
 import FooterNavbar from './components/FooterNavbar';
 import Navbar from './components/Navbar';
 import Toolbar from './components/Toolbar';
-import Toolbar2 from './components/SuperAdmin-UserManagement.js';
+// import Toolbar2 from './components/SuperAdmin-UserManagement.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AboutUs from './pages/AboutUs';
 import Home from './pages/Home';
@@ -14,13 +14,16 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsofUse from './pages/TermsofUse';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/Login';
+import ImageGenerator from './pages/ImageGenerator.js';
+import Chat from './pages/Chat.js';
+import Account from './pages/Account.js';
 
 function App() {
   return (
     <div className="bg-primary-container min-h-screen flex flex-col pl-2">
       <Navbar />
       <div className="flex">
-        {/* <Toolbar /> */}
+        <Toolbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
@@ -31,6 +34,9 @@ function App() {
           <Route path="/termsofuse" element={<TermsofUse />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
+          <Route path="/generate-image" element={<ImageGenerator />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
       </div>
 
