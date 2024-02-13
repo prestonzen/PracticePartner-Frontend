@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {Link} from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -12,7 +12,7 @@ const Navbar = () => {
     <nav className="bg-primary-container text-white py-4 px-6 flex justify-between items-center">
       {/* Left side with app name/logo */}
       <div className="flex items-center">
-        <img src="/logo.png" alt="Logo" className="h-16 w-16 mr-2" />{" "}
+        <img src="/logo.png" alt="Logo" className="h-16 w-16 mr-2" />{' '}
         {/* place logo in public folder */}
         <h1 className="text-2xl text-black">Practice Partner</h1>
       </div>
@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="flex items-center space-x-4">
         <ul
           className={`md:flex text-black font-semibold md:space-x-4 ${
-            isMenuOpen ? "" : "hidden"
+            isMenuOpen ? '' : 'hidden'
           }`}
         >
           <li>
@@ -35,9 +35,9 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-          <Link to="/about-us" className="hover:text-gray-400">
-            About Us
-          </Link>
+            <Link to="/about-us" className="hover:text-gray-400">
+              About Us
+            </Link>
           </li>
           <li>
             <Link to="/pricing" className="hover:text-gray-400">
@@ -48,10 +48,14 @@ const Navbar = () => {
 
         {/* Signup and Login buttons */}
         <button className="bg-primary text-white font-bold text-sm rounded-3xl px-6 py-2">
-          Signup
+          <Link to="/signup" className="hover:text-gray-400">
+            Sign Up
+          </Link>
         </button>
         <button className="bg-primary-container border font-bold border-primary text-primary text-sm rounded-3xl px-6 py-2">
-          Login
+          <Link to="/login" className="hover:text-gray-400">
+            Log In
+          </Link>
         </button>
 
         {/* Menu toggle button for small screens */}

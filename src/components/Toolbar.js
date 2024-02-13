@@ -1,6 +1,19 @@
-import React from "react";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Toolbar = () => {
+  const location = useLocation();
+
+  // Define an array of paths where you want to hide the toolbar
+  const pathsToHideToolbar = ['/signup', '/login'];
+
+  // Check if the current path is in the array of paths to hide the toolbar
+  const shouldHideToolbar = pathsToHideToolbar.includes(location.pathname);
+
+  if (shouldHideToolbar) {
+    return null; // Return null to hide the toolbar
+  }
+
   return (
     <div className="bg-secondary rounded-xl text-white mx-2 mt-8 w-full md:w-48 md:max-w-xs pl-4 py-8 flex flex-col justify-between">
       <div className="mb-4">
