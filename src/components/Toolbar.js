@@ -15,7 +15,7 @@ const Toolbar = () => {
   }
 
   return (
-    <div className="bg-secondary rounded-xl text-white mx-2 mt-8 w-full md:w-48 md:max-w-xs pl-4 py-8 flex flex-col justify-between">
+    <div className="bg-secondary rounded-xl text-white mx-2 mt-8 h-[60%] w-full md:w-48 md:max-w-xs pl-4 py-8 flex flex-col justify-between">
       <div className="mb-4">
         <h2 className="text-lg font-bold mb-4">Tools</h2>
         <div className="flex flex-col space-y-2">
