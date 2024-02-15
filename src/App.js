@@ -24,6 +24,7 @@ function App() {
       <Navbar />
       <div className="flex h-full">
         <Toolbar />
+        {/* <Router> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
@@ -38,6 +39,7 @@ function App() {
           <Route path="/chat" element={<Chat />} />
           <Route path="/account" element={<Account />} />
         </Routes>
+        {/* </Router> */}
       </div>
 
       {/* <FooterNavbar /> */}

@@ -50,6 +50,7 @@ const LogInComp = () => {
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/7bcbda48d513fc320a691c4d0e398b0243566d8ca042c74c734fa30ed102de3b?apiKey=56eb52f6aee94ff2b3f01637cae0192d&"
               className="my-auto w-3.5 aspect-square"
+              alt='Google Logo'
             />
             <div className="grow text-left pl-4">Sign up with Google</div>
           </button>
