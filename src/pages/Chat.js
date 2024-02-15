@@ -1,9 +1,60 @@
-import React from 'react'
+import React from 'react';
 
 const Chat = () => {
   return (
-    <div>Chat</div>
-  )
-}
+    <div className='flex flex-col mt-4 h-full md:w-[80%]'>
+    <div className="flex flex-col md:mx-12 sm:mx-8 rounded-lg overflow-hidden h-full">
+      <div className=" h-[80%] overflow-y-auto">
+        <div className="h-full">
+          <div className="flex items-center px-4 py-2 bg-on-primary-container">
+            <img
+              src="/person_2.png" // Path to user logo image
+              alt="User Logo"
+              className="w-8 h-8 rounded-full mr-2"
+            />
+            <div className="bg-transparent text-white p-2">User Message</div>
+          </div>
+          <div className="flex items-center px-4 py-2 bg-secondary">
+            <img
+              src="/logo.png" // Path to AI logo image
+              alt="AI Logo"
+              className="w-8 h-8 rounded-full mr-2"
+            />
+            <div className="bg-transparent text-white p-2">AI Message</div>
+          </div>
+          <div className="flex items-center px-4 py-2 bg-on-primary-container">
+            <img
+              src="/person_2.png" // Path to user logo image
+              alt="User Logo"
+              className="w-8 h-8 rounded-full mr-2"
+            />
+            <div className="bg-transparent text-white p-2">User Message</div>
+          </div>
+          <div className="flex items-center px-4 py-2 h-full bg-secondary">
+            <img
+              src="/logo.png" // Path to AI logo image
+              alt="AI Logo"
+              className="w-8 h-8 rounded-full mr-2"
+            />
+            <div className="bg-transparent text-white p-2">Pellentesque vitae convallis magna. Nullam nec leo id nisl rhoncus egestas. Integer sodales erat nec ante elementum, sit amet fermentum nunc hendrerit. Nulla facilisi. Sed bibendum metus a malesuada euismod. Nulla facilisi. Nam pellentesque, odio in interdum consequat, magna metus semper velit, in fringilla arcu nulla ac nulla. Nulla facilisi. Nam eu libero neque. Sed sit amet turpis sed dolor lacinia luctus ac ac libero. Integer maximus odio ac leo maximus fermentum. Vivamus vestibulum quam eu massa tristique, ac interdum urna aliquam. Nunc et aliquet felis. Cras ac accumsan quam. Integer sagittis ligula sit amet pharetra convallis. Sed sit amet purus id eros commodo placerat. Suspendisse potenti.</div>
+          </div>
+          {/* Add more messages as needed */}
+        </div>
+      </div>
+    </div>
+    <div className="flex items-center justify-between px-1 mt-4 md:mx-12 sm:mx-8 bg-white border border-primary rounded-lg ">
+        <input
+          type="text"
+          placeholder="Ask Something"
+          className="flex-grow px-4 py-3 bg-transparent border-none focus:outline-none text-gray-700 w-[80%] placeholder-black"
+          
+        />
+        <button className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-800 transition-colors duration-300">
+          Generate
+        </button>
+      </div>
+    </div>
+  );
+};
 
-export default Chat
+export default Chat;

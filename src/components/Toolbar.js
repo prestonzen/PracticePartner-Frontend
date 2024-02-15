@@ -4,10 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 const Toolbar = () => {
   const location = useLocation();
 
-  // Define an array of paths where you want to hide the toolbar
   const pathsToHideToolbar = ['/signup', '/login', '/', '/features','/about-us','/pricing', 'contact', '/privacy-policy', '/termsofuse'];
 
-  // Check if the current path is in the array of paths to hide the toolbar
   const shouldHideToolbar = pathsToHideToolbar.includes(location.pathname);
 
   if (shouldHideToolbar) {
@@ -15,11 +13,11 @@ const Toolbar = () => {
   }
 
   return (
-    <div className="bg-secondary rounded-xl text-white mx-2 mt-8 h-[60%] w-full md:w-48 md:max-w-xs pl-4 py-8 flex flex-col justify-between">
+    <div className="hidden md:block bg-on-surface-variant rounded-xl text-white mx-2 mt-8 h-[60%] w-full md:w-48 md:max-w-xs pl-4 py-8 flex flex-col justify-between">
       <div className="mb-4">
         <h2 className="text-lg font-bold mb-4">Tools</h2>
         <div className="flex flex-col space-y-2">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-2 mr-2">
             <svg
               className="w-5 h-5"
               viewBox="0 0 24 24"
@@ -44,12 +42,12 @@ const Toolbar = () => {
                 />
               </g>
             </svg>
-            <Link to="/generate-image" className="hover:text-gray-600 text-md">
+            <Link to="/generate-image" className=" text-md">
               Image Generator
             </Link>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-1 mr-2">
             <svg
               className="w-5 h-5"
               viewBox="0 0 24 24"
@@ -74,14 +72,14 @@ const Toolbar = () => {
                 />
               </g>
             </svg>
-            <Link to="/chat" className="hover:text-gray-600 text-md">
+            <Link to="/chat" className=" text-md">
               Chat
             </Link>
           </div>
         </div>
       </div>
       <div className="flex flex-col space-y-1 md:mt-56 sm:mt-6 ">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-1 mr-2">
           <svg
             className="w-5 h-5"
             viewBox="0 0 24 24"
@@ -106,12 +104,12 @@ const Toolbar = () => {
               />
             </g>
           </svg>
-          <Link to="/history" className="hover:text-gray-600 text-md">
+          <Link to="/history" className=" text-md">
             History
           </Link>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-1 mr-2">
           <svg
             className="w-5 h-5"
             viewBox="0 0 24 24"
@@ -136,12 +134,12 @@ const Toolbar = () => {
               />
             </g>
           </svg>
-          <Link to="/account" className="hover:text-gray-600 text-md">
+          <Link to="/account" className=" text-md">
             Account
           </Link>
         </div>
         <hr className=" border-white" />
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-1 mr-2">
           <svg
             className="w-5 h-5"
             viewBox="0 0 24 24"
@@ -166,8 +164,8 @@ const Toolbar = () => {
               />
             </g>
           </svg>
-          <Link to="/logout" className="hover:text-gray-600 text-md">
-            Logout
+          <Link to="/logout" className=" text-md">
+            Log Out
           </Link>
         </div>
       </div>
