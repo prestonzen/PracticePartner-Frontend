@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Toolbar from './components/Toolbar';
 // import Toolbar2 from './components/SuperAdmin-UserManagement.js';
-import { BrowserRouter as Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AboutUs from './pages/AboutUs';
 import Home from './pages/Home';
 import Features from './pages/Features';

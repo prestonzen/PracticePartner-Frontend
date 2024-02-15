@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="flex items-center">
         <img src="/logo.png" alt="Logo" className="h-16 w-16 mr-2" />{' '}
         
-        <h1 className="text-2xl text-black">Practice Partner</h1>
+        <h1 className="hidden md:block text-2xl text-black">Practice Partner</h1>
       </div>
 
       {/* Right side with menu options and buttons */}
