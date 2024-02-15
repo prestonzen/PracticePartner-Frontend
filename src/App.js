@@ -17,6 +17,7 @@ import LogIn from './pages/Login';
 import ImageGenerator from './pages/ImageGenerator.js';
 import Chat from './pages/Chat.js';
 import Account from './pages/Account.js';
+import UserManagement from './pages/UserManagement.js';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/generate-image" element={<ImageGenerator />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/user-management" element={<UserManagement />} />
         </Routes>
         {/* </Router> */}
       </div>
