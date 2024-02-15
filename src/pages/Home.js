@@ -155,7 +155,7 @@ export default function Home() {
         </div>
       </div>
     </section>
-      <div className="flex md:flex-row sm:flex-col sm:space-y-6">
+      <div className="flex md:flex-row flex-col max-md:space-y-6">
         <div className="md:flex-1">
           <div className="h-full">
             <PriceInfoCard

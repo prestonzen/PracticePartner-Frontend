@@ -2,7 +2,7 @@ import * as React from "react";
 
 function AboutUs() {
   return (
-    <div className="flex flex-col md:px-56 md:pb-32 sm:px-8 sm:py-4 text-base text-zinc-900">
+    <div className="flex flex-col md:px-56 md:pb-32 max-md:px-8 max-md:py-4 text-base text-zinc-900">
       <header className="self-center text-6xl text-center leading-[63.84px] max-md:text-4xl">
         About Us
       </header>
@@ -14,7 +14,7 @@ function AboutUs() {
         <br />
       </div>
 
-      <div className="mt-14 w-full max-md:mt-10 max-md:max-w-full flex md:flex-row sm:flex-col">
+      <div className="mt-14 w-full max-md:mt-10 max-md:max-w-full flex md:flex-row max-md:flex-col">
       <div className="md:w-1/2 sm:w-full flex flex-col">
         But we didn't stop there. PracticePartner.AI is powered by our proprietary &quot;Ready, Set, Treat!&quot; methodology—a proven framework to fast-track the launch and growth of your private practice. This unique approach ensures that PracticePartner doesn't just offer advice; it provides actionable strategies tailored to the specific needs of private practitioners.
         <br />

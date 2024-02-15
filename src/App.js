@@ -1,6 +1,6 @@
 
 import './App.css';
-// import FooterNavbar from './components/FooterNavbar';
+import FooterNavbar from './components/FooterNavbar';
 import Navbar from './components/Navbar';
 import Toolbar from './components/Toolbar';
 // import Toolbar2 from './components/SuperAdmin-UserManagement.js';
@@ -20,9 +20,9 @@ import Account from './pages/Account.js';
 
 function App() {
   return (
-    <div className="bg-primary-container min-h-screen flex flex-col pl-2">
+    <div className="bg-primary-container min-h-screen flex flex-col ">
       <Navbar />
-      <div className="flex h-full">
+      <div className="flex h-full pl-2">
         <Toolbar />
         {/* <Router> */}
         <Routes>
@@ -42,7 +42,7 @@ function App() {
         {/* </Router> */}
       </div>
 
-      {/* <FooterNavbar /> */}
+      <FooterNavbar />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 const Toolbar = () => {
   const location = useLocation();
 
-  const pathsToHideToolbar = ['/signup', '/login', '/', '/features','/about-us','/pricing', 'contact', '/privacy-policy', '/termsofuse'];
+  const pathsToHideToolbar = ['/signup', '/login', '/', '/features','/about-us','/pricing', '/contact', '/privacy-policy', '/termsofuse'];
 
   const shouldHideToolbar = pathsToHideToolbar.includes(location.pathname);
 

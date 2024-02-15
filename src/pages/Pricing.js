@@ -22,7 +22,7 @@ export default function Pricing() {
         </div>
       </div>
     </section>
-      <div className="flex md:flex-row sm:flex-col md:space-y-0 sm:space-y-6">
+      <div className="flex md:flex-row max-md:flex-col md:space-y-0 max-md:space-y-6">
         <div className="md:flex-1">
           <div className="h-full">
             <PriceInfoCard
