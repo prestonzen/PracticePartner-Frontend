@@ -10,8 +10,8 @@ const Chat = () => {
     }
   }, []);
   return (
-    <div className='flex flex-col mt-10 h-svh md:w-[90%]'>
-    <div className="flex flex-col md:mx-12 h-11/12 sm:mx-8 rounded-lg overflow-hidden">
+    <div className='flex flex-col mt-10 h-svh md:w-[90%] max-md:w-full'>
+    <div className="flex flex-col md:mx-12 h-11/12 max-md:mx-1 rounded-lg overflow-hidden">
       <div className="h-full">
         <div className="h-[470px] overflow-y-auto " ref={containerRef}>
         

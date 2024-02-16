@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation,  useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/');
+  };
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -18,7 +24,7 @@ const Navbar = () => {
   return (
     <nav className="bg-primary-container text-white py-4 px-6 flex justify-between items-center">
       {/* Left side with app name/logo */}
-      <div className="flex items-center">
+      <div className="flex items-center cursor-pointer" onClick={handleClick}>
         <img src="/logo.png" alt="Logo" className="h-16 w-16 mr-2" />{' '}
         
         <h1 className="hidden md:block text-2xl text-black">Practice Partner</h1>
@@ -27,11 +33,13 @@ const Navbar = () => {
       {/* Right side with menu options and buttons */}
       {!shouldHideRightSide && (
         <div className="flex items-center space-x-4">
+        
           <ul
             className={`md:flex text-black font-semibold md:space-x-4 ${
               isMenuOpen ? '' : 'hidden'
             }`}
           >
+          {/* <div className='md:flex md:space-x-4 max-md:flex-col'> */}
             <li>
               <Link to="/" className="hover:text-gray-400">
                 Home
@@ -52,6 +60,7 @@ const Navbar = () => {
                 Pricing
               </Link>
             </li>
+            {/* </div> */}
           </ul>
 
           {/* Signup and Login buttons */}
@@ -74,6 +83,7 @@ const Navbar = () => {
           </button>
         </div>
       )}
+      
     </nav>
   );
 };

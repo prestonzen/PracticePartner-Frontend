@@ -28,7 +28,7 @@ const ImageGenerator = () => {
 
   return (
     <div className="w-[80%]">
-      <div className="flex md:flex-row mx-8 px-28 sm:flex-col w-full">
+      <div className="flex md:flex-row md:mx-8 md:px-28 max-md:px-4 max-md:flex-col w-full">
         <div className="flex flex-col md:w-1/2">
           <h1 className="px-6 text-center text-3xl my-4 mb-8 font-semibold">
             Image Generator
