@@ -60,9 +60,9 @@ export default function AIconfiguration() {
         {inputs.slice(0, 4).map((_, index) => (
   <div
     key={index}
-    className="flex gap-4 justify-between mt-1  text-2xl bg-secondary leading-8 text-center
+    className="flex gap-4 mt-1 text-2xl bg-secondary leading-8 text-center
    text-blue-100 whitespace-nowrap rounded-xl border border-solid
-    border-[color:var(--Practice-Partner-Theme-sys-light-secondary-container,#D2E5F5)] max-md:flex-wrap max-md:px-5
+    border-[color:var(--Practice-Partner-Theme-sys-light-secondary-container,#D2E5F5)]
      max-md:max-w-full"
   >
     <input 
