@@ -18,6 +18,7 @@ import ImageGenerator from './pages/ImageGenerator.js';
 import Chat from './pages/Chat.js';
 import Account from './pages/Account.js';
 import UserManagement from './pages/UserManagement.js';
+import AIconfiguration from './pages/AIconfiguration.js';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/chat" element={<Chat />} />
           <Route path="/account" element={<Account />} />
           <Route path="/user-management" element={<UserManagement />} />
+          <Route path="/ai-configuration" element={<AIconfiguration />} />
         </Routes>
         {/* </Router> */}
       </div>
