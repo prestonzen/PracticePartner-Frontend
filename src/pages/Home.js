@@ -6,7 +6,7 @@ import NewsletterForm from "../components/NewsletterForm";
 
 export default function Home() {
   return (
-    <div className="flex-col px-4 py-4 mx-4 my-4">
+    <div className="flex-col md:px-4 py-4 mx-4 my-4">
       <SectionWithTextAndPicture
         title="Your virtual business coach for private practice entrepreneurs"
         subtitle="Embark on Your Private Practice Journey with Confidence"
@@ -222,6 +222,7 @@ export default function Home() {
         buttonText="Begin Your Success Story"
         buttonLink="/logo-design"
         centerAligned={true}
+        buttonwidth={true}
       />
       </div>
       <NewsletterForm />

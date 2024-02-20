@@ -16,23 +16,23 @@ const PriceInfoCard = ({
       <h3 className="text-lg font-bold mb-2 text-center">{subtitle}</h3>
       <p className="mb-4 text-center">{text}</p>
       <div className="flex justify-around">
-        <div className="grid grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-3 gap-12 mb-4">
           {pricing && (
             <>
               <div className="">
                 <h4 className="text-4xl font-semibold text-center mb-2">{pricing[0]}</h4>
                 {months && <p className="text-gray-500 text-center">{months[0]}</p>}
-                {discounts && <p className="text-gray-500">{discounts[0]}</p>}
+                {discounts && <p className="text-gray-500 max-sm:text-center">{discounts[0]}</p>}
               </div>
               <div>
                 <h4 className="text-4xl font-semibold text-center mb-2">{pricing[1]}</h4>
                 {months && <p className="text-gray-500 text-center">{months[1]}</p>}
-                {discounts && <p className="text-gray-500">{discounts[1]}</p>}
+                {discounts && <p className="text-gray-500 max-sm:text-center">{discounts[1]}</p>}
               </div>
               <div>
                 <h4 className="text-4xl font-semibold text-center mb-2">{pricing[2]}</h4>
                 {months && <p className="text-gray-500 text-center">{months[2]}</p>}
-                {discounts && <p className="text-gray-500">{discounts[2]}</p>}
+                {discounts && <p className="text-gray-500 max-sm:text-center">{discounts[2]}</p>}
               </div>
             </>
           )}

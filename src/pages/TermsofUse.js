@@ -1,16 +1,13 @@
 import React from "react";
 
 const SectionTitle = ({ title }) => (
-  <h2 className="text-base text-lg font-semibold leading-6">{title}</h2>
+  <h2 className="text-base text-lg font-bold leading-6">{title}</h2>
 );
 
 const AgreementPoint = ({ label, children }) => (
   <article>
-    <p>
-      <strong>{label}: </strong>
-      {children}
-    </p>
-  </article>
+  <p style={{ fontWeight: label ? 'normal' : 'bold' }}>{label && <span className="font-semibold">{label}:</span>} {children}</p>
+</article>
 );
 
 const TermsofUse = () => {

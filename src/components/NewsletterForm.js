@@ -12,7 +12,7 @@ function NewsletterForm() {
         strategies, Practice Partner features, and special offers directly to
         your inbox.
       </div>
-      <div className="flex items-center justify-between py-1 px-1 bg-white border border-primary rounded-full w-[60%]">
+      <div className="flex items-center justify-between py-1 px-1 bg-white border border-primary rounded-full md:w-[60%] max-md:w-[85%]">
         <input
           type="email"
           placeholder="Email"

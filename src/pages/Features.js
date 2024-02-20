@@ -4,7 +4,7 @@ import NewsletterForm from '../components/NewsletterForm';
 
 const Features = () => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center md:pl-4 md:pr-12 max-md:px-4">
       <h1 className="text-6xl font-semibold mb-24 mt-8">Features</h1>
       <SectionWithTextAndPicture
         title="How can Practice Partner help me start my practice?"
