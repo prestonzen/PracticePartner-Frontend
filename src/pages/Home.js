@@ -95,7 +95,7 @@ export default function Home() {
         }
         buttonText="Create your own logo now"
         buttonLink="/chat"
-        imageSource="logos.png"
+        imageSource="Logos.png"
         imageAlt="Logos Picture"
         textOnLeft={false}
       />
