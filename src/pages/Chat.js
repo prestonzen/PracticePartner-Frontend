@@ -8,10 +8,10 @@ const Chat = () => {
   const [chatMessages, setChatMessages] = useState([]);
   const [inputPrompt, setInputPrompt] = useState('');
   const [inputMessage, setInputMessage] = useState([]);
-  const [rslt,setRslt] = useState("");
+  // const [rslt,setRslt] = useState("");
 
   const handleSendMessage = async () => {
-    // const rslt = "";
+    let rslt = "";
 
     setInputMessage([...inputMessage, inputPrompt]);
     // setInputPrompt('');
@@ -41,7 +41,7 @@ const Chat = () => {
 
 // Parse the JSON string in the 'message' property
 const parsedMessage = JSON.parse(responseData.message);
-// const rslt = '';
+
 console.log(parsedMessage)
 const iterateObject = (obj) => {
   Object.keys(obj).forEach(key => {
@@ -52,7 +52,8 @@ const iterateObject = (obj) => {
       iterateObject(value);
     } else {
       // Otherwise, log the value
-      setRslt(prevState => prevState + value);
+      // setRslt(prevState => prevState + value);
+      rslt+=value
       // console.log(value);
     }
   });
@@ -68,8 +69,8 @@ iterateObject(parsedMessage);
       // Update the chatMessages state with the response from the backend
       setInputMessage([...inputMessage, inputPrompt]);
       setChatMessages([...chatMessages, rslt]);
-      setRslt("");
-
+      // setRslt("");
+  setInputPrompt("");
       // Clear the input field
       // setInputMessage('');
     } catch (error) {
