@@ -1,84 +1,125 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { useRef, useEffect } from "react";
 
 const Chat = () => {
   const containerRef = useRef(null);
 
+  const [chatMessages, setChatMessages] = useState([]);
+  const [inputPrompt, setInputPrompt] = useState('');
+  const [inputMessage, setInputMessage] = useState([]);
+  const [rslt,setRslt] = useState("");
+
+  const handleSendMessage = async () => {
+    // const rslt = "";
+
+    setInputMessage([...inputMessage, inputPrompt]);
+    // setInputPrompt('');
+    try {
+      // Prepare the messages array to send to the backend
+
+      
+      const system = {
+        "role": "system",
+        "content": "You are a helpful assistant designed to output JSON.",
+      };
+      const message = {
+        "role": "user",
+        "content": inputPrompt,
+      };
+
+      const messages = [system, message];
+      
+
+      // Make a POST request to the backend API
+      const response = await axios.post('http://localhost:3000/api/chat', { messages });
+      // response = JSON.parse(response)
+      // console.log(response);
+      // console.log(response)
+
+      const responseData = response.data;
+
+// Parse the JSON string in the 'message' property
+const parsedMessage = JSON.parse(responseData.message);
+// const rslt = '';
+console.log(parsedMessage)
+const iterateObject = (obj) => {
+  Object.keys(obj).forEach(key => {
+    const value = obj[key];
+    // console.log(`${key}:`);
+    if (typeof value === 'object' && value !== null) {
+      // If the value is an object, recursively iterate over it
+      iterateObject(value);
+    } else {
+      // Otherwise, log the value
+      setRslt(prevState => prevState + value);
+      // console.log(value);
+    }
+  });
+};
+
+iterateObject(parsedMessage);
+
+// Access the content of the message
+// const messageContent = parsedMessage.capital;
+
+// console.log(messageContent);
+    console.log(rslt);
+      // Update the chatMessages state with the response from the backend
+      setInputMessage([...inputMessage, inputPrompt]);
+      setChatMessages([...chatMessages, rslt]);
+      setRslt("");
+
+      // Clear the input field
+      // setInputMessage('');
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
+  };
+
+
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
-  }, []);
+  }, [inputMessage]);
   return (
     <div className='flex flex-col mt-10 h-svh md:w-[90%] max-md:w-full'>
     <div className="flex flex-col md:mx-12 h-11/12 max-md:mx-1 rounded-lg overflow-hidden">
       <div className="h-full">
         <div className="h-[850px] overflow-y-auto " ref={containerRef}>
         
-          <div className="flex items-center px-4 py-2 bg-on-primary-container">
-            <img
-              src="/person_2.png" // Path to user logo image
-              alt="User Logo"
-              className="w-8 h-8 rounded-full mr-2"
-            />
-            <div className="bg-transparent text-white p-2">User Message</div>
-          </div>
-          <div className="flex items-center px-4 py-2 bg-secondary">
-            <img
-              src="/logo.png" // Path to AI logo image
-              alt="AI Logo"
-              className="w-8 h-8 rounded-full mr-2"
-            />
-            <div className="bg-transparent text-white p-2">AI Message</div>
-          </div>
-          <div className="flex items-center px-4 py-2 bg-on-primary-container">
-            <img
-              src="/person_2.png" // Path to user logo image
-              alt="User Logo"
-              className="w-8 h-8 rounded-full mr-2"
-            />
-            <div className="bg-transparent text-white p-2">User Message</div>
-          </div>
-          <div className="flex items-center px-4 py-2 bg-secondary">
-            <img
-              src="/logo.png" // Path to AI logo image
-              alt="AI Logo"
-              className="w-8 h-8 rounded-full mr-2"
-            />
-            <div className="bg-transparent text-white p-2">Pellentesque vitae convallis magna. Nullam nec leo id nisl rhoncus egestas. Integer sodales erat nec ante elementum, sit amet fermentum nunc hendrerit. Nulla facilisi. Sed bibendum metus a malesuada euismod. Nulla facilisi. Nam pellentesque, odio in interdum consequat, magna metus semper velit, in fringilla arcu nulla ac nulla. Nulla facilisi. Nam eu libero neque. Sed sit amet turpis sed dolor lacinia luctus ac ac libero. Integer maximus odio ac leo maximus fermentum. Vivamus vestibulum quam eu massa tristique, ac interdum urna aliquam. Nunc et aliquet felis. Cras ac accumsan quam. Integer sagittis ligula sit amet pharetra convallis. Sed sit amet purus id eros commodo placerat. Suspendisse potenti.</div>
-          </div>
-          <div className="flex items-center px-4 py-2 bg-on-primary-container">
-            <img
-              src="/person_2.png" // Path to user logo image
-              alt="User Logo"
-              className="w-8 h-8 rounded-full mr-2"
-            />
-            <div className="bg-transparent text-white p-2">User Message</div>
-          </div>
-          <div className="flex items-center px-4 py-2 bg-secondary">
-            <img
-              src="/logo.png" // Path to AI logo image
-              alt="AI Logo"
-              className="w-8 h-8 rounded-full mr-2"
-            />
-            <div className="bg-transparent text-white p-2">Pellentesque vitae convallis magna. Nullam nec leo id nisl rhoncus egestas. Integer sodales erat nec ante elementum, sit amet fermentum nunc hendrerit. Nulla facilisi. Sed bibendum metus a malesuada euismod. Nulla facilisi. Nam pellentesque, odio in interdum consequat, magna metus semper velit, in fringilla arcu nulla ac nulla. Nulla facilisi. Nam eu libero neque. Sed sit amet turpis sed dolor lacinia luctus ac ac libero. Integer maximus odio ac leo maximus fermentum. Vivamus vestibulum quam eu massa tristique, ac interdum urna aliquam. Nunc et aliquet felis. Cras ac accumsan quam. Integer sagittis ligula sit amet pharetra convallis. Sed sit amet purus id eros commodo placerat. Suspendisse potenti.</div>
-          </div>
-          <div className="flex items-center px-4 py-2 bg-on-primary-container">
-            <img
-              src="/person_2.png" // Path to user logo image
-              alt="User Logo"
-              className="w-8 h-8 rounded-full mr-2"
-            />
-            <div className="bg-transparent text-white p-2">User Message</div>
-          </div>
-          <div className="flex items-center px-4 py-2 bg-secondary">
-            <img
-              src="/logo.png" // Path to AI logo image
-              alt="AI Logo"
-              className="w-8 h-8 rounded-full mr-2"
-            />
-            <div className="bg-transparent text-white p-2">Pellentesque vitae convallis magna. Nullam nec leo id nisl rhoncus egestas. Integer sodales erat nec ante elementum, sit amet fermentum nunc hendrerit. Nulla facilisi. Sed bibendum metus a malesuada euismod. Nulla facilisi. Nam pellentesque, odio in interdum consequat, magna metus semper velit, in fringilla arcu nulla ac nulla. Nulla facilisi. Nam eu libero neque. Sed sit amet turpis sed dolor lacinia luctus ac ac libero. Integer maximus odio ac leo maximus fermentum. Vivamus vestibulum quam eu massa tristique, ac interdum urna aliquam. Nunc et aliquet felis. Cras ac accumsan quam. Integer sagittis ligula sit amet pharetra convallis. Sed sit amet purus id eros commodo placerat. Suspendisse potenti.</div>
-          </div>
+        {inputMessage.map((message, index) => (
+          <div key={index}>
+              <div
+                // key={index}
+                className={`flex items-center px-4 py-2 ${
+                  'bg-on-primary-container'
+                }`}
+              >
+                <img
+                  src={'/person_2.png' }
+                  alt={index % 2 === 0 ? 'User Logo' : 'AI Logo'}
+                  className="w-8 h-8 rounded-full mr-2"
+                />
+                <div className="bg-transparent text-white p-2">{inputMessage[index]}</div>
+              </div>
+              <div
+                // key={index+1}
+                className={`flex items-center px-4 py-2 ${
+                   'bg-secondary'
+                }`}
+              >
+                <img
+                  src={'/logo.png'}
+                  alt={index % 2 === 0 ? 'User Logo' : 'AI Logo'}
+                  className="w-8 h-8 rounded-full mr-2"
+                />
+                <div className="bg-transparent text-white p-2">{chatMessages[index]}</div>
+                </div>
+              </div>
+            ))}
+
           {/* Add more messages as needed */}
           
         </div>
@@ -88,10 +129,13 @@ const Chat = () => {
         <input
           type="text"
           placeholder="Ask Something"
+          value={inputPrompt}
+        onChange={(e) => setInputPrompt(e.target.value)}
           className="flex-grow px-4 py-3 bg-transparent border-none focus:outline-none text-gray-700 w-[80%] placeholder-black"
           
         />
-        <button className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-800 transition-colors duration-300">
+        <button className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-800 transition-colors duration-300"
+        onClick={handleSendMessage}>
           Generate
         </button>
       </div>

@@ -2,12 +2,33 @@ import React, { useState } from "react";
 import ResultCard from "../components/ResultCard";
 import { InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const ImageGenerator = () => {
   const [selectedValue, setSelectedValue] = useState("Generate from Image");
   const [selectedPrompt1, setSelectedPrompt1] = useState("");
   const [selectedPrompt2, setSelectedPrompt2] = useState("");
   const [selectedFile1, setSelectedFile1] = useState(null);
+
+  const [generatedImage, setGeneratedImage] = useState('');
+
+  const handleGenerateImage = async () => {
+    try {
+      // Make a POST request to the backend API
+
+      console.log(selectedPrompt1)
+
+      // const prompt = JSON.stringify("prompt":selectedPrompt1)
+      // console.log(prompt)
+      const response = await axios.post('http://localhost:3000/api/generate-image', {"prompt":selectedPrompt1});
+
+      // Update state with the generated image URL
+      setGeneratedImage(response.data.data[0].url);
+      console.log(response.data.data[0].url)
+    } catch (error) {
+      console.error('Error generating image:', error);
+    }
+  };
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -154,13 +175,14 @@ const ImageGenerator = () => {
             </div>
           )}
           <div className="flex sm:justify-center">
-            <Link
-              to="/generate"
+            <button
+            type="submit"
+              onClick={handleGenerateImage}
               className={`bg-primary text-white font-bold text-sm rounded-2xl mt-4 px-4 py-4 w-full hover:bg-primary-light 
         transition-colors duration-300 flex justify-center`}
             >
               Generate
-            </Link>
+            </button>
           </div>
           <Link
             to="/generate"
@@ -174,12 +196,13 @@ const ImageGenerator = () => {
           <h1 className="px-6 text-center text-3xl font-semibold my-4">
             Results
           </h1>
-          <div className="grid md:grid-cols-2">
-            <ResultCard imageUrl="result.png" />
+          {generatedImage && (<div className="grid md:grid-cols-2">
+            <ResultCard imageUrl={generatedImage} />
             <ResultCard imageUrl="result2.png" />
             <ResultCard imageUrl="result3.png" />
             <ResultCard imageUrl="result4.png" />
-          </div>
+          </div>)}
+          
         </div>
       </div>
     </div>
