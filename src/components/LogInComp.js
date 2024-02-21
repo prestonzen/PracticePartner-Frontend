@@ -1,7 +1,38 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
 const LogInComp = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+  // const { isAuthenticated, login, logout } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  // if (isAuthenticated) {
+  //   navigate('/generate-image');
+  // }
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3000/api/login', formData);
+      console.log('Login successful:', response.data);
+      localStorage.setItem('token', response.data.token);
+      navigate('/generate-image')
+      // Handle success (e.g., redirect user)
+    } catch (error) {
+      console.error('Login error:', error.message);
+      // Handle error (e.g., show error message)
+    }
+  };
   return (
     <div className="flex flex-col p-4 max-w-[603px] text-zinc-900">
       <div className="self-center text-6xl whitespace-nowrap leading-[63.84px] max-md:text-4xl pb-5">
@@ -14,13 +45,15 @@ const LogInComp = () => {
         </Link>
       </div>
       <div className="flex flex-col p-6 mt-2 text-base font-semibold rounded-xl bg-slate-600 max-md:px-5 max-md:max-w-full">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="justify-center items-start py-4 pr-16 pl-6 mt-4 whitespace-nowrap rounded-xl bg-slate-50 max-md:px-5 max-md:max-w-full">
             <input
               type="email"
               id="email"
               name="email"
               placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
               className="appearance-none border-none bg-transparent w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
             />
           </div>
@@ -30,6 +63,8 @@ const LogInComp = () => {
               id="password"
               name="password"
               placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
               className="appearance-none border-none bg-transparent w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
             />
           </div>

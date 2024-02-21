@@ -32,16 +32,16 @@ const Navbar = () => {
 
       {/* Right side with menu options and buttons */}
       {!shouldHideRightSide && (
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 max-md:space-x-1">
         
           <ul
-            className={`md:flex text-black font-semibold md:space-x-4 ${
+            className={`md:flex text-black font-semibold md:space-x-4 max-md:text-sm ${
               isMenuOpen ? '' : 'hidden'
             }`}
           >
           {/* <div className='md:flex md:space-x-4 max-md:flex-col'> */}
             <li>
-              <Link to="/" className="hover:text-gray-400">
+              <Link to="/" className="hover:text-gray-400 ">
                 Home
               </Link>
             </li>
@@ -64,14 +64,14 @@ const Navbar = () => {
           </ul>
 
           {/* Signup and Login buttons */}
-          <button className="bg-primary text-white font-bold text-sm rounded-3xl px-6 py-2">
+          <button className="bg-primary text-white font-bold max-md:font-semibold text-sm max-md:text-xs rounded-3xl px-6 max-md:px-3 py-2 max-md:py-1">
             <Link to="/signup" className="hover:text-gray-400">
-              Sign Up
+              SignUp
             </Link>
           </button>
-          <button className="bg-primary-container border font-bold border-primary text-primary text-sm rounded-3xl px-6 py-2">
+          <button className="bg-primary-container border font-bold max-md:font-semibold border-primary text-primary text-sm max-md:text-xs rounded-3xl px-6 max-md:px-3 py-2 max-md:py-1">
             <Link to="/login" className="hover:text-gray-400">
-              Log In
+              LogIn
             </Link>
           </button>
 

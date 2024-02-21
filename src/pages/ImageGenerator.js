@@ -29,7 +29,7 @@ const ImageGenerator = () => {
   return (
     <div className="w-[80%]">
       <div className="flex md:flex-row md:mx-8 md:px-28 max-md:px-4 max-md:flex-col w-full">
-        <div className="flex flex-col md:w-1/2">
+        <div className="flex flex-col md:w-1/2 md:px-6 max-md:px-2">
           <h1 className="px-6 text-center text-3xl my-4 mb-8 font-semibold">
             Image Generator
           </h1>
@@ -170,7 +170,7 @@ const ImageGenerator = () => {
             Advanced Mode
           </Link>
         </div>
-        <div className="flex flex-col  px-6">
+        <div className="flex flex-col md:px-6 max-md:px-2">
           <h1 className="px-6 text-center text-3xl font-semibold my-4">
             Results
           </h1>

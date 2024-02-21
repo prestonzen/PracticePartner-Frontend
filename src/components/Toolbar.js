@@ -10,7 +10,7 @@ const Toolbar = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
-  const pathsToHideToolbar = ['/signup', '/login', '/', '/features','/about-us','/pricing', '/contact', '/privacy-policy', '/termsofuse'];
+  const pathsToHideToolbar = ['/signup', '/login', '/', '/features','/about-us','/pricing', '/contact', '/privacy-policy','/upgrade-plan', '/termsofuse'];
 
   const shouldHideToolbar = pathsToHideToolbar.includes(location.pathname);
 
@@ -19,10 +19,11 @@ const Toolbar = () => {
   }
 
   return (
-    <div>
+    
+    <div className=''>
     <div className="flex hidden max-md:block">
       {/* Button to toggle the drawer */}
-      <button onClick={toggleDrawer} className=" top-24 bg-blue-300 text-white py-2 px-4 rounded">
+      <button onClick={toggleDrawer} className="top-24 bg-blue-300 text-white py-2 px-4 rounded">
       <span className="block w-6 h-0.5 bg-gray-800 mb-1"></span>
             <span className="block w-6 h-0.5 bg-gray-800 mb-1"></span>
             <span className="block w-6 h-0.5 bg-gray-800"></span>
@@ -30,13 +31,13 @@ const Toolbar = () => {
 
       {/* Drawer component */}
       {isDrawerOpen && (
-        <div className="hidden max-md:block bg-on-surface-variant rounded-xl text-white mt-8 h-[50%] w-[90%] pl-1 py-4 flex flex-col justify-between">
+        <div className="max-md:absolute hidden z-10 max-md:block bg-on-surface-variant rounded-xl text-white mt-2 h-[300px] w-[50%] pl-1 py-4 flex flex-col justify-between">
       <div className="mb-4">
         <h2 className="text-lg font-bold mb-4 text-center">Tools</h2>
-        <div className="flex flex-col space-y-2">
-          <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-2 mr-2">
+        <div className="flex flex-col space-y-1">
+          <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-4 py-2 mr-2">
             <svg
-              className="w-5 h-5"
+              className="w-6 h-6"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -59,14 +60,14 @@ const Toolbar = () => {
                 />
               </g>
             </svg>
-            <Link to="/generate-image" className=" text-sm">
+            <Link to="/generate-image" className="text-md ">
               Image Generator
             </Link>
           </div>
 
-          <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-1 mr-2">
+          <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-4 py-1 mr-2">
             <svg
-              className="w-5 h-5"
+              className="w-6 h-6"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -89,16 +90,16 @@ const Toolbar = () => {
                 />
               </g>
             </svg>
-            <Link to="/chat" className=" text-md">
+            <Link to="/chat" className="text-md">
               Chat
             </Link>
           </div>
         </div>
       </div>
       <div className="flex flex-col space-y-1 md:mt-56 sm:mt-6 ">
-        <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-1 mr-2">
+        <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-4 py-1 mr-2">
           <svg
-            className="w-5 h-5"
+            className="w-6 h-6"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -126,9 +127,9 @@ const Toolbar = () => {
           </Link>
         </div>
 
-        <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-1 mr-2">
+        <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-4 py-1 mr-2">
           <svg
-            className="w-5 h-5"
+            className="w-6 h-6"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -156,9 +157,9 @@ const Toolbar = () => {
           </Link>
         </div>
         <hr className=" border-white" />
-        <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-1 mr-2">
+        <div className="flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-4 py-1 mr-2">
           <svg
-            className="w-5 h-5"
+            className="w-6 h-6"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
