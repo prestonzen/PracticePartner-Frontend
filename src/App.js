@@ -4,7 +4,7 @@ import FooterNavbar from './components/FooterNavbar';
 import Navbar from './components/Navbar';
 import Toolbar from './components/Toolbar';
 // import Toolbar2 from './components/SuperAdmin-UserManagement.js';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AboutUs from './pages/AboutUs';
 import Home from './pages/Home';
 import Features from './pages/Features';
@@ -20,9 +20,6 @@ import Account from './pages/Account.js';
 import UserManagement from './pages/UserManagement.js';
 import AIconfiguration from './pages/AIconfiguration.js';
 import PlanUpgradePrompt from './pages/PlanUpgradePrompt.js';
-import { AuthContext, AuthProvider } from './components/AuthContext.js';
-import PrivateRoute from './pages/PrivateRoute.js';
-import { useContext } from 'react';
 
 function App() {
   // const { isAuthenticated, login } = useContext(AuthContext);

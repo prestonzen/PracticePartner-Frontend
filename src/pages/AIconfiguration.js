@@ -6,7 +6,7 @@ export default function AIconfiguration() {
   );
 
   const inputs = Array(5).fill(null);
-  const [editableContent, setEditableContent] = useState("");
+  const [setEditableContent] = useState("");
 
   return (
     <main className="flex flex-col p-4 rounded-xl md:m-4 max-md:m-1 w-[85%] bg-secondary">
