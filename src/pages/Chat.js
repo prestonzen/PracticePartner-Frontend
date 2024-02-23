@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 
 const Chat = () => {
   const containerRef = useRef(null);
+  const ref = useRef(null);
 
   const [chatMessages, setChatMessages] = useState([]);
   const [inputPrompt, setInputPrompt] = useState('');
@@ -80,20 +81,29 @@ iterateObject(parsedMessage);
 
 
   useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
-    }
-  }, [inputMessage]);
+    // if (chatMessages.length) {
+      // Scroll to the bottom of the chat messages container
+      // containerRef.current.scrollTop = containerRef.current.scrollHeight;
+
+      // ref.current?.scrollIntoView(
+      //   {behavior:"smooth",block:"end",}
+      // );
+    // }
+    containerRef.current?.lastElementChild?.scrollIntoView();
+  }, [chatMessages]);
   return (
     <div className='flex flex-col mt-10 h-svh md:w-[90%] max-md:w-full'>
     <div className="flex flex-col md:mx-12 h-11/12 max-md:mx-1 rounded-lg overflow-hidden">
       <div className="h-full">
-        <div className="h-[850px] overflow-y-auto " ref={containerRef}>
+        <div className="h-[850px] overflow-y-auto bg-on-primary-container" 
+        ref={containerRef}
+        >
         
         {inputMessage.map((message, index) => (
-          <div key={index}>
+          <div key={index} >
               <div
                 // key={index}
+                
                 className={`flex items-center px-4 py-2 ${
                   'bg-on-primary-container'
                 }`}
@@ -118,11 +128,10 @@ iterateObject(parsedMessage);
                 />
                 <div className="bg-transparent text-white p-2">{chatMessages[index]}</div>
                 </div>
+
               </div>
             ))}
-
-          {/* Add more messages as needed */}
-          
+          {/* <div ref={ref}></div> */}
         </div>
       </div>
     </div>
