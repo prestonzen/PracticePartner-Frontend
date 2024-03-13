@@ -29,11 +29,17 @@ const ImageGenerator = () => {
       );
 
       // Update state with the generated image URL
-      setGeneratedImage(response.data[0].data[0].url);
-      setGeneratedImage1(response.data[1].data[0].url);
-      setGeneratedImage2(response.data[2].data[0].url);
-      setGeneratedImage3(response.data[3].data[0].url);
-      console.log(response.data.data[0].url);
+      setGeneratedImage(response.data[0]);
+      setGeneratedImage1(response.data[1]);
+      setGeneratedImage2(response.data[2]);
+      setGeneratedImage3(response.data[3]);
+      console.log(response);
+      console.log(response.data[0]);
+      console.log(generatedImage);
+      console.log(generatedImage1);
+      console.log(generatedImage2);
+      console.log(generatedImage3);
+
     } catch (error) {
       console.error('Error generating image:', error);
     }
