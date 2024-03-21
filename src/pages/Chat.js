@@ -33,7 +33,7 @@ const Chat = () => {
       
 
       // Make a POST request to the backend API
-      const response = await axios.post('http://localhost:3000/api/chat','https://api.practicepartner.ai', { messages });
+      const response = await axios.post(/*'http://localhost:3000/api/generate-image',*/ 'https://api.practicepartner.ai', { messages });
       // response = JSON.parse(response)
       // console.log(response);
       // console.log(response)

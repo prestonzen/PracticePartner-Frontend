@@ -24,7 +24,7 @@ const ImageGenerator = () => {
       // const prompt = JSON.stringify("prompt":selectedPrompt1)
       // console.log(prompt)
       const response = await axios.post(
-        'http://localhost:3000/api/generate-image', 'https://api.practicepartner.ai',
+        /*'http://localhost:3000/api/generate-image',*/ 'https://api.practicepartner.ai',
         { prompt: selectedPrompt1 }
       );
 
