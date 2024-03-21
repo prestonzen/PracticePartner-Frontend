@@ -22,7 +22,10 @@ const LogInComp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/login', formData);
+      const response = await axios.post(
+        // 'http://localhost:3000/api/login',
+        'https://api.practicepartner.ai/api/login',
+       formData);
       console.log('Login successful:', response.data);
       localStorage.setItem('token', response.data.token);
       navigate('/generate-image')

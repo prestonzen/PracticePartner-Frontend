@@ -18,7 +18,10 @@ const SignUpComp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/signup', formData);
+      const response = await axios.post(
+        // 'http://localhost:3000/api/signup',
+        'https://api.practicepartner.ai/api/signup',
+         formData);
       console.log('Signup successful:', response.data);
       navigate('/login');
       // Handle success (e.g., redirect user)
