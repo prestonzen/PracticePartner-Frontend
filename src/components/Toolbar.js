@@ -10,7 +10,7 @@ const Toolbar = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
-  const pathsToHideToolbar = ['/signup', '/login', '/', '/features','/about-us','/pricing', '/contact', '/privacy-policy','/upgrade-plan', '/termsofuse'];
+  const pathsToHideToolbar = ['/signup', '/login', '/', '/features','/about-us','/pricing','/plan', '/contact', '/privacy-policy','/upgrade-plan', '/termsofuse'];
 
   const shouldHideToolbar = pathsToHideToolbar.includes(location.pathname);
 

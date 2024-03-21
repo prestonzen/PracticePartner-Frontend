@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const PriceInfoCard = ({
   title,
@@ -8,6 +9,7 @@ const PriceInfoCard = ({
   months,
   discounts,
   buttonText,
+  link
 }) => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 mx-4 h-full">
@@ -39,9 +41,20 @@ const PriceInfoCard = ({
         </div>
       </div>
       <div className="flex justify-center">
-        <button className="bg-primary text-white font-bold text-sm rounded-full px-6 py-3 hover:bg-primary-light transition-colors duration-300">
+      {link ? (
+        <Link 
+          to={link}
+          className="bg-primary text-white font-bold text-sm rounded-full px-6 py-3 hover:bg-primary-light transition-colors duration-300"
+        >
+          {buttonText}
+        </Link>
+      ) : (
+        <button 
+          className="bg-primary text-white font-bold text-sm rounded-full px-6 py-3 hover:bg-primary-light transition-colors duration-300"
+        >
           {buttonText}
         </button>
+      )}
       </div>
     </div>
   );

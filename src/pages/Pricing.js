@@ -32,6 +32,7 @@ export default function Pricing() {
          giving you a glimpse into the expert advice and insights available at your fingertips. 
          It's a perfect way to experience firsthand how our AI can assist in your journey."
               buttonText="Get Started"
+              link="/plan"
             />
           </div>
         </div>
@@ -46,6 +47,7 @@ export default function Pricing() {
               months={["3 months", "6 months", "12 months"]}
               discounts={["", "20% discount", "30% discount"]}
               buttonText="Get Started"
+              link="/plan"
             />
           </div>
         </div>

@@ -20,6 +20,7 @@ import Account from './pages/Account.js';
 import UserManagement from './pages/UserManagement.js';
 import AIconfiguration from './pages/AIconfiguration.js';
 import PlanUpgradePrompt from './pages/PlanUpgradePrompt.js';
+import Plan from './pages/Plan.js';
 
 function App() {
   // const { isAuthenticated, login } = useContext(AuthContext);
@@ -35,6 +36,7 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/features" element={<Features />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/plan" element={<Plan />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/termsofuse" element={<TermsofUse />} />
