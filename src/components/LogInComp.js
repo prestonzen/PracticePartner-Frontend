@@ -1,13 +1,31 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { auth, provider } from '../utlis/firebase';
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 const LogInComp = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+  const [value, setValue] = useState('');
   // const { isAuthenticated, login, logout } = useContext(AuthContext);
+  const provider = new GoogleAuthProvider();
+  const handleClick = async (e) => {
+    try {
+      const data = await signInWithPopup(auth, provider);
+      setValue(data.user.email);
+      localStorage.setItem('email', data.user.email);
+      navigate('/generate-image');
+    } catch (error) {
+      console.error('Error during login:', error);
+      // Handle errors appropriately (e.g., display an error message)
+    }
+  };
+
+  useEffect(() => {
+    setValue(localStorage.getItem('email'));
+  });
 
   const navigate = useNavigate();
 
@@ -23,12 +41,13 @@ const LogInComp = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        // 'http://localhost:3000/api/login',
-        'https://api.practicepartner.ai/api/login',
-       formData);
+        'http://localhost:3000/api/login',
+        // 'https://api.practicepartner.ai/api/login',
+        formData
+      );
       console.log('Login successful:', response.data);
       localStorage.setItem('token', response.data.token);
-      navigate('/generate-image')
+      navigate('/generate-image');
       // Handle success (e.g., redirect user)
     } catch (error) {
       console.error('Login error:', error.message);
@@ -82,12 +101,15 @@ const LogInComp = () => {
         </div>
         <div className="self-center mt-4 text-white">Or</div>
         <div className="flex justify-center">
-          <button className="flex justify-between items-center px-10 py-4 mt-4 max-w-full text-sm leading-5 text-gray-600 whitespace-nowrap rounded-3xl bg-slate-50 w-[250px]">
+          <button
+            onClick={handleClick}
+            className="flex justify-between items-center px-10 py-4 mt-4 max-w-full text-sm leading-5 text-gray-600 whitespace-nowrap rounded-3xl bg-slate-50 w-[250px]"
+          >
             <img
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/7bcbda48d513fc320a691c4d0e398b0243566d8ca042c74c734fa30ed102de3b?apiKey=56eb52f6aee94ff2b3f01637cae0192d&"
               className="my-auto w-3.5 aspect-square"
-              alt='Google Logo'
+              alt="Google Logo"
             />
             <div className="grow text-left pl-4">Sign up with Google</div>
           </button>

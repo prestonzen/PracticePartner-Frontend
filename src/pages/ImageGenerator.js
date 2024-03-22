@@ -24,8 +24,8 @@ const ImageGenerator = () => {
       // const prompt = JSON.stringify("prompt":selectedPrompt1)
       // console.log(prompt)
       const response = await axios.post(
-        // 'http://localhost:3000/api/generate-image',
-         'https://api.practicepartner.ai/api/generate-image',
+        'http://localhost:3000/api/generate-image',
+        // 'https://api.practicepartner.ai/api/generate-image',
         { prompt: selectedPrompt1 }
       );
 
@@ -40,7 +40,6 @@ const ImageGenerator = () => {
       console.log(generatedImage1);
       console.log(generatedImage2);
       console.log(generatedImage3);
-
     } catch (error) {
       console.error('Error generating image:', error);
     }
