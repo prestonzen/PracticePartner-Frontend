@@ -1,7 +1,55 @@
 import React, { useState } from "react";
 
+import { loadStripe } from "@stripe/stripe-js";
+
+const public_stripe_key = process.env.REACT_APP_PUBLIC_STRIPE_KEY;
+
 function PlanInfoCard({ planFeatures }) {
   const [selectedPeriod, setSelectedPeriod] = useState("Quarterly");
+  const [userEmail,setUserEmail] = useState("muku@gmail.com");
+
+  const handleSubscription = async () => {
+    let lookupKey;
+switch (selectedPeriod) {
+  case "Quarterly":
+    lookupKey = "quarterly";
+    break;
+  case "Bi-Annually":
+    lookupKey = "biannual";
+    break;
+  case "Annually":
+    lookupKey = "annual";
+    break;
+  default:
+    lookupKey = "quarterly"; // Set a default value or handle error case
+}
+    const stripePromise = await loadStripe(public_stripe_key);
+    const response = await fetch(
+      "http://localhost:3000/create-stripe-session-subscription",
+      {
+        method: "POST",
+        headers: { "Content-Type": "Application/JSON" },
+        // body: JSON.stringify([
+        //   { item: "Online Video Editor", qty: "3", itemCode: "99" },
+        // ]),
+        body: JSON.stringify({ lookup_key: lookupKey, mail: userEmail
+          // ,item: "Online Video Editor", qty: "3", itemCode: "99" 
+        }),
+      }
+    );
+
+    if (response.status === 409) {
+      const data = await response.json();
+      if (data && data.redirectUrl) {
+        window.location.href = data.redirectUrl; // redirect to billing portal if user is already subscribed
+      }
+    } else {
+      const session = await response.json();
+      stripePromise.redirectToCheckout({
+        sessionId: session.id,
+      });
+    }
+  };
 
   const handleClick = (period) => {
     setSelectedPeriod(period);
@@ -118,7 +166,9 @@ function PlanInfoCard({ planFeatures }) {
                   {selectedPeriod === "Annually" && "30% Discount"}
                 </p>
               </div>
-              <button className="justify-center items-center px-16 py-5 mt-2 text-base font-bold whitespace-nowrap bg-sky-700 rounded-xl text-slate-50 max-md:px-5">
+              <button 
+              onClick={handleSubscription}
+              className="justify-center items-center px-16 py-5 mt-2 text-base font-bold whitespace-nowrap bg-sky-700 rounded-xl text-slate-50 max-md:px-5">
                 {" "}
                 Subscribe{" "}
               </button>

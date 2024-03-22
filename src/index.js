@@ -1,19 +1,18 @@
 // index.js or index.jsx
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom';
 import './index.css'; // Import your custom CSS file
 import App from './App'; // Import your main component
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom"
 
-ReactDOM.render(
+createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
