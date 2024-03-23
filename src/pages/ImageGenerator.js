@@ -1,48 +1,61 @@
-import React, { useEffect, useState } from 'react';
-import ResultCard from '../components/ResultCard';
-import { InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState, CSSProperties } from "react";
+import ResultCard from "../components/ResultCard";
+import { InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { FadeLoader } from "react-spinners";
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 const ImageGenerator = () => {
-  const [selectedValue, setSelectedValue] = useState('Generate from Text');
-  const [selectedPrompt1, setSelectedPrompt1] = useState('');
-  const [selectedPrompt2, setSelectedPrompt2] = useState('');
+  const [selectedValue, setSelectedValue] = useState("Generate from Text");
+  const [selectedPrompt1, setSelectedPrompt1] = useState("");
+  const [selectedPrompt2, setSelectedPrompt2] = useState("");
   const [selectedFile1, setSelectedFile1] = useState(null);
 
-  const [generatedImage, setGeneratedImage] = useState('');
-  const [generatedImage1, setGeneratedImage1] = useState('');
-  const [generatedImage2, setGeneratedImage2] = useState('');
-  const [generatedImage3, setGeneratedImage3] = useState('');
+  const [generatedImage, setGeneratedImage] = useState("");
+  const [generatedImage1, setGeneratedImage1] = useState("");
+  const [generatedImage2, setGeneratedImage2] = useState("");
+  const [generatedImage3, setGeneratedImage3] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/api/generate-image');
-        const responseData = response.data;
-        
-        console.log(responseData[0].prompt);
-        setSelectedPrompt1(responseData[0].prompt);
-        setGeneratedImage(responseData[0].img1);
-        setGeneratedImage1(responseData[0].img2);
-        setGeneratedImage2(responseData[0].img3);
-        setGeneratedImage3(responseData[0].img4);
-        // Extract input messages from the response and update state
-        // responseData.forEach(image => {
-        //   setInputMessage(prevInputMessages => [...prevInputMessages, chat.question]);
-        //   setChatMessages(prevChatMessages => [...prevChatMessages, chat.answer]);
-        // });
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const fetchImages = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "http://localhost:3000/api/generate-image"
+  //       );
+  //       const responseData = response.data;
 
-      } catch (error) {
-        console.error('Error fetching chat messages:', error);
-      }
-    };
+  //       console.log(responseData[0].prompt);
+  //       setSelectedPrompt1(responseData[0].prompt);
+  //       setGeneratedImage(responseData[0].img1);
+  //       setGeneratedImage1(responseData[0].img2);
+  //       setGeneratedImage2(responseData[0].img3);
+  //       setGeneratedImage3(responseData[0].img4);
+  //       // Extract input messages from the response and update state
+  //       // responseData.forEach(image => {
+  //       //   setInputMessage(prevInputMessages => [...prevInputMessages, chat.question]);
+  //       //   setChatMessages(prevChatMessages => [...prevChatMessages, chat.answer]);
+  //       // });
+  //     } catch (error) {
+  //       console.error("Error fetching chat messages:", error);
+  //     }finally{
+  //       setLoading(false);
+  //     }
+  //   };
 
-    // Call the fetchImages function when the component mounts
-    fetchImages();
-  }, []); 
+  //   // Call the fetchImages function when the component mounts
+  //   fetchImages();
+  // }, []);
 
   const handleGenerateImage = async () => {
+    setLoading(true);
     try {
       // Make a POST request to the backend API
 
@@ -51,7 +64,7 @@ const ImageGenerator = () => {
       // const prompt = JSON.stringify("prompt":selectedPrompt1)
       // console.log(prompt)
       const response = await axios.post(
-        'http://localhost:3000/api/generate-image',
+        "http://localhost:3000/api/generate-image",
         // 'https://api.practicepartner.ai/api/generate-image',
         { prompt: selectedPrompt1 }
       );
@@ -68,7 +81,9 @@ const ImageGenerator = () => {
       console.log(generatedImage2);
       console.log(generatedImage3);
     } catch (error) {
-      console.error('Error generating image:', error);
+      console.error("Error generating image:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -97,7 +112,7 @@ const ImageGenerator = () => {
             Image Generator
           </h1>
           <div className="">
-            <InputLabel className="" style={{ fontWeight: 'bolder' }}>
+            <InputLabel className="" style={{ fontWeight: "bolder" }}>
               Generation Style
             </InputLabel>
             <div className="bg-white h-[40%] rounded-3xl">
@@ -124,9 +139,9 @@ const ImageGenerator = () => {
             </div>
           </div>
 
-          {selectedValue === 'Generate from Image' && (
+          {selectedValue === "Generate from Image" && (
             <div className="">
-              <InputLabel
+              {/* <InputLabel
                 className="text-black font-bold"
                 style={{ fontWeight: 'bolder' }}
               >
@@ -157,13 +172,15 @@ const ImageGenerator = () => {
                 accept="image/*"
                 className="hidden"
                 onChange={(e) => handleFileChange(e)}
-              />
+              /> */}
+
+              {/* <h1>Coming Soon.....</h1> */}
             </div>
           )}
-          {selectedValue === 'Generate from Text' && (
+          {selectedValue === "Generate from Text" && (
             <div className="flex flex-col">
               <div className="bg-transparent">
-                <InputLabel className="" style={{ fontWeight: 'bolder' }}>
+                <InputLabel className="" style={{ fontWeight: "bolder" }}>
                   What should the AI create?
                 </InputLabel>
                 <TextField
@@ -177,17 +194,17 @@ const ImageGenerator = () => {
                   variant="filled"
                   InputProps={{
                     style: {
-                      border: 'none',
-                      borderRadius: '0.75rem',
+                      border: "none",
+                      borderRadius: "0.75rem",
                       // height: "2.5rem",
-                      paddingBottom: '0.8rem',
+                      paddingBottom: "0.8rem",
                     },
                     disableUnderline: true,
                   }}
                 />
               </div>
               <div className="bg-transparent mt-4">
-                <InputLabel className="" style={{ fontWeight: 'bolder' }}>
+                <InputLabel className="" style={{ fontWeight: "bolder" }}>
                   What shouldn't the AI create?
                 </InputLabel>
                 <TextField
@@ -201,10 +218,10 @@ const ImageGenerator = () => {
                   variant="filled"
                   InputProps={{
                     style: {
-                      border: 'none',
-                      borderRadius: '0.75rem',
+                      border: "none",
+                      borderRadius: "0.75rem",
                       // height: "2.5rem",
-                      paddingBottom: '0.8rem',
+                      paddingBottom: "0.8rem",
                     },
                     disableUnderline: true,
                   }}
@@ -216,33 +233,55 @@ const ImageGenerator = () => {
             <button
               type="submit"
               onClick={handleGenerateImage}
+              disabled={(selectedValue === "Generate from Image" ? true : false) || loading}
               className={`bg-primary text-white font-bold text-sm rounded-2xl mt-4 px-4 py-4 w-full hover:bg-primary-light 
         transition-colors duration-300 flex justify-center`}
             >
-              Generate
+              {selectedValue === "Generate from Image"
+                ? "Coming Soon"
+                : "Generate"}
             </button>
           </div>
-          <Link
-            to="/generate"
-            className={`bg-transparent text-black font-semibold text-sm mt-2 px-4 py-4 w-full hover:bg-primary-light 
+          {selectedValue === "Generate from Text" && (
+            <Link
+              to="/generate"
+              className={`bg-transparent text-black font-semibold text-sm mt-2 px-4 py-4 w-full hover:bg-primary-light 
         transition-colors duration-300 flex justify-start`}
-          >
-            Advanced Mode
-          </Link>
+            >
+              Advanced Mode
+            </Link>
+          )}
         </div>
+        {selectedValue === "Generate from Text" && 
         <div className="flex flex-col md:px-6 max-md:px-2">
           <h1 className="px-6 text-center text-3xl font-semibold my-4">
             Results
           </h1>
-          {generatedImage && (
-            <div className="grid md:grid-cols-2">
-              <ResultCard imageUrl={generatedImage} />
-              <ResultCard imageUrl={generatedImage1} />
-              <ResultCard imageUrl={generatedImage2} />
-              <ResultCard imageUrl={generatedImage3} />
-            </div>
-          )}
-        </div>
+          <div className="flex flex-col md:px-6 max-md:px-2">
+            {loading ? (
+              // Render ClipLoader when loading is true
+              <div className="flex p-44 justify-center items-center w-full h-full">
+                <FadeLoader
+                  color="#006590"
+                  loading={loading}
+                  cssOverride={override}
+                  size={100}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
+            ) : (
+              // Render the result cards when loading is false
+              <div className="grid md:grid-cols-2">
+                <ResultCard imageUrl={generatedImage} />
+                <ResultCard imageUrl={generatedImage1} />
+                <ResultCard imageUrl={generatedImage2} />
+                <ResultCard imageUrl={generatedImage3} />
+              </div>
+            )}
+          </div>
+          ;
+        </div>}
       </div>
     </div>
   );
