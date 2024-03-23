@@ -11,8 +11,28 @@ const Chat = () => {
   const [inputMessage, setInputMessage] = useState([]);
   // const [rslt,setRslt] = useState("");
 
+  useEffect(() => {
+    const fetchChatMessages = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/chat');
+        const responseData = response.data;
+
+        // Extract input messages from the response and update state
+        responseData.chats.forEach(chat => {
+          setInputMessage(prevInputMessages => [...prevInputMessages, chat.question]);
+          setChatMessages(prevChatMessages => [...prevChatMessages, chat.answer]);
+        });
+
+      } catch (error) {
+        console.error('Error fetching chat messages:', error);
+      }
+    };
+
+    // Call the fetchChatMessages function when the component mounts
+    fetchChatMessages();
+  }, []); 
+
   const handleSendMessage = async () => {
-    let rslt = '';
 
     setInputMessage([...inputMessage, inputPrompt]);
     // setInputPrompt('');
@@ -32,46 +52,17 @@ const Chat = () => {
 
       // Make a POST request to the backend API
       const response = await axios.post(
-        'http://localhost:3000/api/generate-image',
+        'http://localhost:3000/api/chat',
         // 'https://api.practicepartner.ai/api/chat',
         { messages }
       );
-      // response = JSON.parse(response)
-      // console.log(response);
-      // console.log(response)
 
-      const responseData = response.data;
+      const responseData = response.data.message;
 
-      // Parse the JSON string in the 'message' property
-      const parsedMessage = JSON.parse(responseData.message);
-
-      console.log(parsedMessage);
-      const iterateObject = (obj) => {
-        Object.keys(obj).forEach((key) => {
-          const value = obj[key];
-          // console.log(`${key}:`);
-          if (typeof value === 'object' && value !== null) {
-            // If the value is an object, recursively iterate over it
-            iterateObject(value);
-          } else {
-            // Otherwise, log the value
-            // setRslt(prevState => prevState + value);
-            rslt += value;
-            // console.log(value);
-          }
-        });
-      };
-
-      iterateObject(parsedMessage);
-
-      // Access the content of the message
-      // const messageContent = parsedMessage.capital;
-
-      // console.log(messageContent);
-      console.log(rslt);
+      // console.log(responseData);
       // Update the chatMessages state with the response from the backend
       setInputMessage([...inputMessage, inputPrompt]);
-      setChatMessages([...chatMessages, rslt]);
+      setChatMessages([...chatMessages, responseData]);
       // setRslt("");
       setInputPrompt('');
       // Clear the input field
@@ -92,6 +83,9 @@ const Chat = () => {
     // }
     containerRef.current?.lastElementChild?.scrollIntoView();
   }, [chatMessages]);
+
+
+
   return (
     <div className="flex flex-col mt-10 h-svh md:w-[90%] max-md:w-full">
       <div className="flex flex-col md:mx-12 h-11/12 max-md:mx-1 rounded-lg overflow-hidden">

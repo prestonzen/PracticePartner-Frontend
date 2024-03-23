@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ResultCard from '../components/ResultCard';
 import { InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const ImageGenerator = () => {
-  const [selectedValue, setSelectedValue] = useState('Generate from Image');
+  const [selectedValue, setSelectedValue] = useState('Generate from Text');
   const [selectedPrompt1, setSelectedPrompt1] = useState('');
   const [selectedPrompt2, setSelectedPrompt2] = useState('');
   const [selectedFile1, setSelectedFile1] = useState(null);
@@ -14,6 +14,33 @@ const ImageGenerator = () => {
   const [generatedImage1, setGeneratedImage1] = useState('');
   const [generatedImage2, setGeneratedImage2] = useState('');
   const [generatedImage3, setGeneratedImage3] = useState('');
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/generate-image');
+        const responseData = response.data;
+        
+        console.log(responseData[0].prompt);
+        setSelectedPrompt1(responseData[0].prompt);
+        setGeneratedImage(responseData[0].img1);
+        setGeneratedImage1(responseData[0].img2);
+        setGeneratedImage2(responseData[0].img3);
+        setGeneratedImage3(responseData[0].img4);
+        // Extract input messages from the response and update state
+        // responseData.forEach(image => {
+        //   setInputMessage(prevInputMessages => [...prevInputMessages, chat.question]);
+        //   setChatMessages(prevChatMessages => [...prevChatMessages, chat.answer]);
+        // });
+
+      } catch (error) {
+        console.error('Error fetching chat messages:', error);
+      }
+    };
+
+    // Call the fetchImages function when the component mounts
+    fetchImages();
+  }, []); 
 
   const handleGenerateImage = async () => {
     try {
