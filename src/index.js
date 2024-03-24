@@ -1,7 +1,7 @@
 // index.js or index.jsx
 
 import React from 'react';
-import {createRoot} from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import './index.css'; // Import your custom CSS file
 import App from './App'; // Import your main component
 import reportWebVitals from './reportWebVitals';
