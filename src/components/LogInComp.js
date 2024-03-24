@@ -42,11 +42,18 @@ const LogInComp = () => {
     try {
       const response = await axios.post(
         'http://localhost:3000/api/login',
-        // 'https://api.practicepartner.ai/api/login',
-        formData
+        JSON.stringify(formData),
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true, // Set to true to include cookies in the request
+          credentials: 'include', // Indicates that CORS should include credentials
+        }
       );
       console.log('Login successful:', response.data);
-      localStorage.setItem('token', response.data.token);
+      // localStorage.setItem('token', response.data.token);
       navigate('/generate-image');
       // Handle success (e.g., redirect user)
     } catch (error) {

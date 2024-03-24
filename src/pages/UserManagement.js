@@ -41,7 +41,8 @@ function UserManagement() {
     };
     // console.log(userInfo);
     // Call the fetchChatMessages function when the component mounts
-    fetchUsers();
+    fetchUsers(); 
+    
   }, []);
   return (
     <main className="flex flex-col self-stretch m-4 p-4 w-[90%] max-md:w-[98%] text-2xl leading-7 whitespace-nowrap rounded-xl bg-secondary text-slate-50">

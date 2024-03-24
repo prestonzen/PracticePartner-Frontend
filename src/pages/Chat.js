@@ -14,7 +14,9 @@ const Chat = () => {
   useEffect(() => {
     const fetchChatMessages = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/chat");
+        const response = await axios.get("http://localhost:3000/api/chat",
+         {withCredentials:true});
+        
         const responseData = response.data;
 
         // Extract input messages from the response and update state
@@ -35,6 +37,7 @@ const Chat = () => {
 
     // Call the fetchChatMessages function when the component mounts
     fetchChatMessages();
+
   }, []);
 
   const handleSendMessage = async () => {
@@ -58,8 +61,12 @@ const Chat = () => {
       // Make a POST request to the backend API
       const response = await axios.post(
         "http://localhost:3000/api/chat",
-        // 'https://api.practicepartner.ai/api/chat',
-        { messages }
+        { messages },
+        {
+          withCredentials: true,
+          credentials: 'include'
+          // Add other necessary options here
+        }
       );
 
       const responseData = response.data.message;
