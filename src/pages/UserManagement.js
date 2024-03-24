@@ -18,7 +18,11 @@ function UserManagement() {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/user-management"
+          "http://localhost:3000/api/user-management",
+          {
+            withCredentials: true,
+            credentials: 'include'
+          }
         );
         const responseData = response.data;
         console.log(responseData);
@@ -42,7 +46,7 @@ function UserManagement() {
     // console.log(userInfo);
     // Call the fetchChatMessages function when the component mounts
     fetchUsers(); 
-    
+
   }, []);
   return (
     <main className="flex flex-col self-stretch m-4 p-4 w-[90%] max-md:w-[98%] text-2xl leading-7 whitespace-nowrap rounded-xl bg-secondary text-slate-50">

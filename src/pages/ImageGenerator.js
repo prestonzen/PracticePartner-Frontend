@@ -66,7 +66,11 @@ const ImageGenerator = () => {
       const response = await axios.post(
         "http://localhost:3000/api/generate-image",
         // 'https://api.practicepartner.ai/api/generate-image',
-        { prompt: selectedPrompt1 }
+        { prompt: selectedPrompt1 },
+        {
+          withCredentials: true,
+          credentials: 'include'
+        }
       );
 
       // Update state with the generated image URL

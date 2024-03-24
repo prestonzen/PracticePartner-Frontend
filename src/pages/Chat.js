@@ -65,7 +65,6 @@ const Chat = () => {
         {
           withCredentials: true,
           credentials: 'include'
-          // Add other necessary options here
         }
       );
 
