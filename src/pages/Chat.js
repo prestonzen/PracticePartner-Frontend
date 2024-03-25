@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Chat = () => {
   const containerRef = useRef(null);
@@ -10,15 +11,14 @@ const Chat = () => {
   const [inputPrompt, setInputPrompt] = useState("");
   const [inputMessage, setInputMessage] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchChatMessages = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/chat",
-         {withCredentials:true});
-        
+        const response = await axios.get("http://localhost:3000/api/chat", { withCredentials: true });
+  
         const responseData = response.data;
-
+  
         // Extract input messages from the response and update state
         responseData.chats.forEach((chat) => {
           setInputMessage((prevInputMessages) => [
@@ -32,13 +32,17 @@ const Chat = () => {
         });
       } catch (error) {
         console.error("Error fetching chat messages:", error);
+        if (error.response && error.response.status === 401) {
+          // Redirect to the login page
+          navigate('/login');
+        }
       }
     };
-
+  
     // Call the fetchChatMessages function when the component mounts
     fetchChatMessages();
-
-  }, []);
+  
+  }, [])
 
   const handleSendMessage = async () => {
     setLoading(true);

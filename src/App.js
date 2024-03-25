@@ -4,7 +4,7 @@ import FooterNavbar from './components/FooterNavbar';
 import Navbar from './components/Navbar';
 import Toolbar from './components/Toolbar';
 // import Toolbar2 from './components/SuperAdmin-UserManagement.js';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import AboutUs from './pages/AboutUs';
 import Home from './pages/Home';
 import Features from './pages/Features';
@@ -21,9 +21,48 @@ import UserManagement from './pages/UserManagement.js';
 import AIconfiguration from './pages/AIconfiguration.js';
 import PlanUpgradePrompt from './pages/PlanUpgradePrompt.js';
 import Plan from './pages/Plan.js';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { PropagateLoader } from 'react-spinners';
 
 function App() {
-  // const { isAuthenticated, login } = useContext(AuthContext);
+  const [email, setEmail] = useState(null);
+  const [loading,setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/authenticate', { withCredentials: true });
+  
+        if (response.status === 200) {
+          // const content = await response.json();
+          // console.log(response);
+          if (response.data.email) {
+            console.log(response.data.email);
+            setEmail(true);
+          } else {
+            console.error('Email not found in response');
+          }
+        }else if(response.status ===401){
+          setEmail(false);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      } finally{
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
+  },[]);
+
+  if (loading) {
+    // Render loading indicator or placeholder while data is being fetched
+    return (<div className="bg-primary-container flex justify-center items-center h-svh">
+    <PropagateLoader color="#006590" loading={true} size={15} />
+  </div>);
+  }
+
   return (
     <div className="bg-primary-container min-h-screen flex flex-col ">
     {/* <AuthProvider> */}
@@ -49,7 +88,8 @@ function App() {
           isAuthenticated={isAuthenticated}
         /> */}
           <Route path="/generate-image" element={<ImageGenerator />} />        
-          <Route path="/chat" element={<Chat />} />
+          {/* <Route path="/chat" element={() => <Chat email={email}/>} /> */}
+          <Route path="/chat" element={email? <Chat /> : <Navigate to="/login" />} />
           <Route path="/account" element={<Account />} />
           <Route path="/user-management" element={<UserManagement />} />
           <Route path="/ai-configuration" element={<AIconfiguration />} />
