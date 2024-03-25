@@ -2,7 +2,7 @@ import React from 'react'
 import PriceInfoCard from '../components/PriceInfoCard'
 import PlanInfoCard from '../components/PlanInfoCard';
 
-const Plan = () => {
+const Plan = ({isLoggedIn ,emailAddress}) => {
   const planFeatures = [
     {
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/bec32ef0adf8fc7537a8f83e965d41ef4ff6e36dd1877c1f65671cc33c0f6c73?apiKey=9a29bea2c99f43cc9fe59f79b667536e&",
@@ -38,7 +38,7 @@ const Plan = () => {
       </div>
     </section>
     <div className='flex justify-center'>
-    <PlanInfoCard planFeatures={planFeatures}  />
+    <PlanInfoCard planFeatures={planFeatures} isLoggedIn={isLoggedIn} emailAddress={emailAddress} />
     </div>
     </div>
   )

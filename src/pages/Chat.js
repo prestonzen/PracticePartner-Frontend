@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { PropagateLoader } from "react-spinners";
 
 const Chat = () => {
   const containerRef = useRef(null);
@@ -10,8 +11,10 @@ const Chat = () => {
   const [chatMessages, setChatMessages] = useState([]);
   const [inputPrompt, setInputPrompt] = useState("");
   const [inputMessage, setInputMessage] = useState([]);
+  const [pageLoading, setPageLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchChatMessages = async () => {
       try {
@@ -36,6 +39,8 @@ const Chat = () => {
           // Redirect to the login page
           navigate('/login');
         }
+      }finally{
+        setPageLoading(false);
       }
     };
   
@@ -100,6 +105,14 @@ const Chat = () => {
     // }
     containerRef.current?.lastElementChild?.scrollIntoView();
   }, [chatMessages]);
+
+
+  if (pageLoading) {
+    // Render loading indicator or placeholder while data is being fetched
+    return (<div className="bg-primary-container w-full flex justify-center items-center h-svh">
+    <PropagateLoader color="#006590" loading={true} size={15} />
+  </div>);
+  }
 
   return (
     <div className="flex flex-col mt-10 h-svh md:w-[90%] max-md:w-full">

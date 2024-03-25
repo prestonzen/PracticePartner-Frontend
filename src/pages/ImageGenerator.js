@@ -69,7 +69,7 @@ const ImageGenerator = () => {
         { prompt: selectedPrompt1 },
         {
           withCredentials: true,
-          credentials: 'include'
+          credentials: "include",
         }
       );
 
@@ -237,7 +237,10 @@ const ImageGenerator = () => {
             <button
               type="submit"
               onClick={handleGenerateImage}
-              disabled={(selectedValue === "Generate from Image" ? true : false) || loading}
+              disabled={
+                (selectedValue === "Generate from Image" ? true : false) ||
+                loading
+              }
               className={`bg-primary text-white font-bold text-sm rounded-2xl mt-4 px-4 py-4 w-full hover:bg-primary-light 
         transition-colors duration-300 flex justify-center`}
             >
@@ -256,36 +259,41 @@ const ImageGenerator = () => {
             </Link>
           )}
         </div>
-        {selectedValue === "Generate from Text" && 
-        <div className="flex flex-col md:px-6 max-md:px-2">
-          <h1 className="px-6 text-center text-3xl font-semibold my-4">
-            Results
-          </h1>
+        {selectedValue === "Generate from Text" && (
           <div className="flex flex-col md:px-6 max-md:px-2">
-            {loading ? (
-              // Render ClipLoader when loading is true
-              <div className="flex p-44 justify-center items-center w-full h-full">
-                <FadeLoader
-                  color="#006590"
-                  loading={loading}
-                  cssOverride={override}
-                  size={100}
-                  aria-label="Loading Spinner"
-                  data-testid="loader"
-                />
-              </div>
-            ) : (
-              // Render the result cards when loading is false
-              <div className="grid md:grid-cols-2">
-                <ResultCard imageUrl={generatedImage} />
-                <ResultCard imageUrl={generatedImage1} />
-                <ResultCard imageUrl={generatedImage2} />
-                <ResultCard imageUrl={generatedImage3} />
-              </div>
-            )}
+            <h1 className="px-6 text-center text-3xl font-semibold my-4">
+              Results
+            </h1>
+            <div className="flex flex-col md:px-6 max-md:px-2">
+              {loading ? (
+                // Render ClipLoader when loading is true
+                <div className="flex p-44 justify-center items-center w-full h-full">
+                  <FadeLoader
+                    color="#006590"
+                    loading={loading}
+                    cssOverride={override}
+                    size={100}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                </div>
+              ) : (
+                generatedImage &&
+                generatedImage1 &&
+                generatedImage2 &&
+                generatedImage3 && (
+                  <div className="grid md:grid-cols-2">
+                    <ResultCard imageUrl={generatedImage} />
+                    <ResultCard imageUrl={generatedImage1} />
+                    <ResultCard imageUrl={generatedImage2} />
+                    <ResultCard imageUrl={generatedImage3} />
+                  </div>
+                )
+              )}
+            </div>
+            
           </div>
-          ;
-        </div>}
+        )}
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
 import LogInComp from '../components/LogInComp';
 
-const LogIn = () => {
+const LogIn = ({setEmail, setIsAdmin}) => {
   return (
     <div className="flex justify-center items-center w-screen">
-      <LogInComp />
+      <LogInComp setEmail={setEmail} setIsAdmin={setIsAdmin}/>
     </div>
   );
 };

@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { Link, useLocation,  useNavigate } from 'react-router-dom';
+import axios from "axios";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ loggedIn, setEmail, setIsAdmin, setEmailAddress }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  
+
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/');
+    navigate("/");
   };
 
   const toggleMenu = () => {
@@ -16,30 +17,60 @@ const Navbar = () => {
   };
 
   // Define pathnames where you want to hide the right side of the Navbar
-  const hideRightSidePaths = ['/signup', '/login', '/generate-image','/chat','/account', '/history'];
+  const hideRightSidePaths = [
+    "/signup",
+    "/login",
+    "/generate-image",
+    "/chat",
+    "/account",
+    "/history",
+    "/ai-configuration",
+    "/user-management"
+  ];
 
   // Check if the current pathname is in the hideRightSidePaths array
   const shouldHideRightSide = hideRightSidePaths.includes(location.pathname);
+
+  const handleLogout = async () => {
+    try {
+
+      await axios.post(
+        'http://localhost:3000/api/logout',
+        {},
+        {
+          withCredentials: true, 
+          credentials: 'include', 
+        }
+      );
+      setIsAdmin(false);
+      setEmail(false);
+      setEmailAddress("");
+
+      navigate('/'); 
+    } catch (error) {
+      console.error('Error during logout:', error.message);
+    }
+  };
 
   return (
     <nav className="bg-primary-container text-white py-4 px-6 flex justify-between items-center">
       {/* Left side with app name/logo */}
       <div className="flex items-center cursor-pointer" onClick={handleClick}>
-        <img src="/logo.png" alt="Logo" className="h-16 w-16 mr-2" />{' '}
-        
-        <h1 className="hidden md:block text-2xl text-black">Practice Partner</h1>
+        <img src="/logo.png" alt="Logo" className="h-16 w-16 mr-2" />{" "}
+        <h1 className="hidden md:block text-2xl text-black">
+          Practice Partner
+        </h1>
       </div>
 
       {/* Right side with menu options and buttons */}
       {!shouldHideRightSide && (
         <div className="flex items-center space-x-4 max-md:space-x-1">
-        
           <ul
             className={`md:flex text-black font-semibold md:space-x-4 max-md:text-sm ${
-              isMenuOpen ? '' : 'hidden'
+              isMenuOpen ? "" : "hidden"
             }`}
           >
-          {/* <div className='md:flex md:space-x-4 max-md:flex-col'> */}
+            {/* <div className='md:flex md:space-x-4 max-md:flex-col'> */}
             <li>
               <Link to="/" className="hover:text-gray-400 ">
                 Home
@@ -64,16 +95,26 @@ const Navbar = () => {
           </ul>
 
           {/* Signup and Login buttons */}
-          <button className="bg-primary text-white font-bold max-md:font-semibold text-sm max-md:text-xs rounded-3xl px-6 max-md:px-3 py-2 max-md:py-1">
-            <Link to="/signup" className="hover:text-gray-400">
-              SignUp
-            </Link>
-          </button>
-          <button className="bg-primary-container border font-bold max-md:font-semibold border-primary text-primary text-sm max-md:text-xs rounded-3xl px-6 max-md:px-3 py-2 max-md:py-1">
-            <Link to="/login" className="hover:text-gray-400">
-              LogIn
-            </Link>
-          </button>
+          {loggedIn ? (
+            <button className="bg-primary-container border font-bold max-md:font-semibold border-primary text-primary text-sm max-md:text-xs rounded-3xl px-6 max-md:px-3 py-2 max-md:py-1">
+              <Link to="/" onClick={handleLogout} className="hover:text-gray-400">
+                Logout
+              </Link>
+            </button>
+          ) : (
+            <>
+              <button className="bg-primary text-white font-bold max-md:font-semibold text-sm max-md:text-xs rounded-3xl px-6 max-md:px-3 py-2 max-md:py-1">
+                <Link to="/signup" className="hover:text-gray-400">
+                  SignUp
+                </Link>
+              </button>
+              <button className="bg-primary-container border font-bold max-md:font-semibold border-primary text-primary text-sm max-md:text-xs rounded-3xl px-6 max-md:px-3 py-2 max-md:py-1">
+                <Link to="/login" className="hover:text-gray-400">
+                  LogIn
+                </Link>
+              </button>
+            </>
+          )}
 
           {/* Menu toggle button for small screens */}
           <button className="md:hidden" onClick={toggleMenu}>
@@ -83,7 +124,6 @@ const Navbar = () => {
           </button>
         </div>
       )}
-      
     </nav>
   );
 };

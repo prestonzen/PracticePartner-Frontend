@@ -3,19 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, provider } from '../utlis/firebase';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-const LogInComp = () => {
+const LogInComp = ({setEmail, setIsAdmin}) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-  const [value, setValue] = useState('');
+
   // const { isAuthenticated, login, logout } = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
   const handleClick = async (e) => {
     try {
       const data = await signInWithPopup(auth, provider);
-      setValue(data.user.email);
-      localStorage.setItem('email', data.user.email);
+      
+      setEmail(true);
       navigate('/generate-image');
     } catch (error) {
       console.error('Error during login:', error);
@@ -23,10 +23,7 @@ const LogInComp = () => {
     }
   };
 
-  useEffect(() => {
-    setValue(localStorage.getItem('email'));
-  });
-
+  
   const navigate = useNavigate();
 
   // if (isAuthenticated) {
@@ -52,8 +49,8 @@ const LogInComp = () => {
           credentials: 'include', // Indicates that CORS should include credentials
         }
       );
-      console.log('Login successful:', response.data);
-      // localStorage.setItem('token', response.data.token);
+      setEmail(true);
+      setIsAdmin(response.data.isAdmin)
       navigate('/generate-image');
       // Handle success (e.g., redirect user)
     } catch (error) {
