@@ -1,26 +1,26 @@
-import React, { useEffect, useState, CSSProperties } from "react";
-import ResultCard from "../components/ResultCard";
-import { InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { FadeLoader } from "react-spinners";
+import React, { useEffect, useState, CSSProperties } from 'react';
+import ResultCard from '../components/ResultCard';
+import { InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { FadeLoader } from 'react-spinners';
 
 const override = {
-  display: "block",
-  margin: "0 auto",
-  borderColor: "red",
+  display: 'block',
+  margin: '0 auto',
+  borderColor: 'red',
 };
 
 const ImageGenerator = () => {
-  const [selectedValue, setSelectedValue] = useState("Generate from Text");
-  const [selectedPrompt1, setSelectedPrompt1] = useState("");
-  const [selectedPrompt2, setSelectedPrompt2] = useState("");
+  const [selectedValue, setSelectedValue] = useState('Generate from Text');
+  const [selectedPrompt1, setSelectedPrompt1] = useState('');
+  const [selectedPrompt2, setSelectedPrompt2] = useState('');
   const [selectedFile1, setSelectedFile1] = useState(null);
 
-  const [generatedImage, setGeneratedImage] = useState("");
-  const [generatedImage1, setGeneratedImage1] = useState("");
-  const [generatedImage2, setGeneratedImage2] = useState("");
-  const [generatedImage3, setGeneratedImage3] = useState("");
+  const [generatedImage, setGeneratedImage] = useState('');
+  const [generatedImage1, setGeneratedImage1] = useState('');
+  const [generatedImage2, setGeneratedImage2] = useState('');
+  const [generatedImage3, setGeneratedImage3] = useState('');
   const [loading, setLoading] = useState(false);
 
   // useEffect(() => {
@@ -64,12 +64,12 @@ const ImageGenerator = () => {
       // const prompt = JSON.stringify("prompt":selectedPrompt1)
       // console.log(prompt)
       const response = await axios.post(
-        "http://localhost:3000/api/generate-image",
+        'http://localhost:3000/api/generate-image',
         // 'https://api.practicepartner.ai/api/generate-image',
         { prompt: selectedPrompt1 },
         {
           withCredentials: true,
-          credentials: "include",
+          credentials: 'include',
         }
       );
 
@@ -85,7 +85,7 @@ const ImageGenerator = () => {
       console.log(generatedImage2);
       console.log(generatedImage3);
     } catch (error) {
-      console.error("Error generating image:", error);
+      console.error('Error generating image:', error);
     } finally {
       setLoading(false);
     }
@@ -116,7 +116,7 @@ const ImageGenerator = () => {
             Image Generator
           </h1>
           <div className="">
-            <InputLabel className="" style={{ fontWeight: "bolder" }}>
+            <InputLabel className="" style={{ fontWeight: 'bolder' }}>
               Generation Style
             </InputLabel>
             <div className="bg-white h-[40%] rounded-3xl">
@@ -143,7 +143,7 @@ const ImageGenerator = () => {
             </div>
           </div>
 
-          {selectedValue === "Generate from Image" && (
+          {selectedValue === 'Generate from Image' && (
             <div className="">
               {/* <InputLabel
                 className="text-black font-bold"
@@ -181,10 +181,10 @@ const ImageGenerator = () => {
               {/* <h1>Coming Soon.....</h1> */}
             </div>
           )}
-          {selectedValue === "Generate from Text" && (
+          {selectedValue === 'Generate from Text' && (
             <div className="flex flex-col">
               <div className="bg-transparent">
-                <InputLabel className="" style={{ fontWeight: "bolder" }}>
+                <InputLabel className="" style={{ fontWeight: 'bolder' }}>
                   What should the AI create?
                 </InputLabel>
                 <TextField
@@ -198,17 +198,17 @@ const ImageGenerator = () => {
                   variant="filled"
                   InputProps={{
                     style: {
-                      border: "none",
-                      borderRadius: "0.75rem",
+                      border: 'none',
+                      borderRadius: '0.75rem',
                       // height: "2.5rem",
-                      paddingBottom: "0.8rem",
+                      paddingBottom: '0.8rem',
                     },
                     disableUnderline: true,
                   }}
                 />
               </div>
               <div className="bg-transparent mt-4">
-                <InputLabel className="" style={{ fontWeight: "bolder" }}>
+                <InputLabel className="" style={{ fontWeight: 'bolder' }}>
                   What shouldn't the AI create?
                 </InputLabel>
                 <TextField
@@ -222,10 +222,10 @@ const ImageGenerator = () => {
                   variant="filled"
                   InputProps={{
                     style: {
-                      border: "none",
-                      borderRadius: "0.75rem",
+                      border: 'none',
+                      borderRadius: '0.75rem',
                       // height: "2.5rem",
-                      paddingBottom: "0.8rem",
+                      paddingBottom: '0.8rem',
                     },
                     disableUnderline: true,
                   }}
@@ -238,18 +238,18 @@ const ImageGenerator = () => {
               type="submit"
               onClick={handleGenerateImage}
               disabled={
-                (selectedValue === "Generate from Image" ? true : false) ||
+                (selectedValue === 'Generate from Image' ? true : false) ||
                 loading
               }
               className={`bg-primary text-white font-bold text-sm rounded-2xl mt-4 px-4 py-4 w-full hover:bg-primary-light 
         transition-colors duration-300 flex justify-center`}
             >
-              {selectedValue === "Generate from Image"
-                ? "Coming Soon"
-                : "Generate"}
+              {selectedValue === 'Generate from Image'
+                ? 'Coming Soon'
+                : 'Generate'}
             </button>
           </div>
-          {selectedValue === "Generate from Text" && (
+          {selectedValue === 'Generate from Text' && (
             <Link
               to="/generate"
               className={`bg-transparent text-black font-semibold text-sm mt-2 px-4 py-4 w-full hover:bg-primary-light 
@@ -259,7 +259,7 @@ const ImageGenerator = () => {
             </Link>
           )}
         </div>
-        {selectedValue === "Generate from Text" && (
+        {selectedValue === 'Generate from Text' && (
           <div className="flex flex-col md:px-6 max-md:px-2">
             <h1 className="px-6 text-center text-3xl font-semibold my-4">
               Results
@@ -278,20 +278,16 @@ const ImageGenerator = () => {
                   />
                 </div>
               ) : (
-                generatedImage &&
-                generatedImage1 &&
-                generatedImage2 &&
-                generatedImage3 && (
-                  <div className="grid md:grid-cols-2">
-                    <ResultCard imageUrl={generatedImage} />
-                    <ResultCard imageUrl={generatedImage1} />
-                    <ResultCard imageUrl={generatedImage2} />
-                    <ResultCard imageUrl={generatedImage3} />
-                  </div>
-                )
+                // Render the result cards when loading is false
+                <div className="grid md:grid-cols-2">
+                  <ResultCard imageUrl={generatedImage} />
+                  <ResultCard imageUrl={generatedImage1} />
+                  <ResultCard imageUrl={generatedImage2} />
+                  <ResultCard imageUrl={generatedImage3} />
+                </div>
               )}
             </div>
-            
+            ;
           </div>
         )}
       </div>
