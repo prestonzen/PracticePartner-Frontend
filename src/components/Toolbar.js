@@ -290,7 +290,7 @@ const Toolbar = ({setEmail, isAdmin, setIsAdmin,setEmailAddress }) => {
           </div>
         )}
       </div>
-      <div className="hidden md:block bg-on-surface-variant rounded-xl text-white mx-2 mt-8 h-[65%] w-full md:w-48 md:max-w-xs pl-4 py-8 flex flex-col justify-between">
+      <div className="hidden md:block bg-on-surface-variant rounded-xl text-white mx-2 mt-8 w-full md:w-48 md:max-w-xs pl-4 py-8 flex flex-col justify-between">
         <div className="mb-4">
           <h2 className="text-lg font-bold mb-4">Tools</h2>
           {isAdmin? 
@@ -481,9 +481,9 @@ const Toolbar = ({setEmail, isAdmin, setIsAdmin,setEmailAddress }) => {
 
           
         </div>}
-
-        <div className={`flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-1 mr-2 ${isAdmin ? 'md:mt-56 sm:mt-6' : ''}`}>
-        <hr className=" border-white" />
+        <hr className=" border-white w-full" />
+        <div className={`flex items-center space-x-1 hover:bg-on-surface rounded-2xl px-2 py-1 mr-2 ${isAdmin ? 'md:mt-56 sm:mt-6' : ''}`}>
+        
             <svg
               className="w-5 h-5"
               viewBox="0 0 24 24"

@@ -277,7 +277,7 @@ const ImageGenerator = () => {
                     data-testid="loader"
                   />
                 </div>
-              ) : (
+              ) : (generatedImage && (
                 // Render the result cards when loading is false
                 <div className="grid md:grid-cols-2">
                   <ResultCard imageUrl={generatedImage} />
@@ -285,9 +285,8 @@ const ImageGenerator = () => {
                   <ResultCard imageUrl={generatedImage2} />
                   <ResultCard imageUrl={generatedImage3} />
                 </div>
-              )}
+              ))}
             </div>
-            ;
           </div>
         )}
       </div>
