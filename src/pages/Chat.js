@@ -51,7 +51,7 @@ const Chat = () => {
 
   const handleSendMessage = async () => {
     setLoading(true);
-    setInputMessage([...inputMessage, inputPrompt]);
+    // setInputMessage([...inputMessage, inputPrompt]);
     // setInputPrompt('');
     try {
       // Prepare the messages array to send to the backend
@@ -95,14 +95,6 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    // if (chatMessages.length) {
-    // Scroll to the bottom of the chat messages container
-    // containerRef.current.scrollTop = containerRef.current.scrollHeight;
-
-    // ref.current?.scrollIntoView(
-    //   {behavior:"smooth",block:"end",}
-    // );
-    // }
     containerRef.current?.lastElementChild?.scrollIntoView();
   }, [chatMessages]);
 
@@ -115,11 +107,11 @@ const Chat = () => {
   }
 
   return (
-    <div className="flex flex-col mt-10 h-svh md:w-[90%] max-md:w-full">
-      <div className="flex flex-col md:mx-12 h-11/12 max-md:mx-1 rounded-lg overflow-hidden">
-        <div className="h-full">
+    <div className="flex flex-col mt-10 md:w-[90%] max-md:w-full">
+      <div className="flex flex-col md:mx-12 max-md:mx-1 rounded-lg overflow-hidden">
+        <div className="">
           <div
-            className="h-[850px] overflow-y-auto bg-on-primary-container"
+            className="h-[550px] 2xl:h-[650px] overflow-y-auto bg-on-primary-container"
             ref={containerRef}
           >
             {inputMessage.map((message, index) => (
