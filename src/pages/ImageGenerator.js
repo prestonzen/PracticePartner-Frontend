@@ -1,7 +1,7 @@
-import React, { useEffect, useState, CSSProperties } from 'react';
+import React, { useState } from 'react';
 import ResultCard from '../components/ResultCard';
 import { InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FadeLoader } from 'react-spinners';
 
@@ -11,17 +11,18 @@ const override = {
   borderColor: 'red',
 };
 
-const ImageGenerator = () => {
+const ImageGenerator = ({setIsSubscribed}) => {
   const [selectedValue, setSelectedValue] = useState('Generate from Text');
   const [selectedPrompt1, setSelectedPrompt1] = useState('');
   const [selectedPrompt2, setSelectedPrompt2] = useState('');
-  const [selectedFile1, setSelectedFile1] = useState(null);
+  // const [selectedFile1, setSelectedFile1] = useState(null);
 
   const [generatedImage, setGeneratedImage] = useState('');
   const [generatedImage1, setGeneratedImage1] = useState('');
   const [generatedImage2, setGeneratedImage2] = useState('');
   const [generatedImage3, setGeneratedImage3] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   setLoading(true);
@@ -86,6 +87,11 @@ const ImageGenerator = () => {
       console.log(generatedImage3);
     } catch (error) {
       console.error('Error generating image:', error);
+      if (error.response && error.response.status === 401) {
+        // Redirect to the plan page
+        setIsSubscribed(false);
+        navigate('/plan');
+      }
     } finally {
       setLoading(false);
     }
@@ -103,10 +109,10 @@ const ImageGenerator = () => {
     setSelectedPrompt2(event.target.value);
   };
 
-  const handleFileChange = (event, fileNumber) => {
-    const file = event.target.files[0];
-    setSelectedFile1(file);
-  };
+  // const handleFileChange = (event, fileNumber) => {
+  //   const file = event.target.files[0];
+  //   setSelectedFile1(file);
+  // };
 
   return (
     <div className="w-[80%]">

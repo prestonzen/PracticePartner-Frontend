@@ -4,9 +4,8 @@ import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
 
-const Chat = () => {
+const Chat = ({setIsSubscribed}) => {
   const containerRef = useRef(null);
-  const ref = useRef(null);
 
   const [chatMessages, setChatMessages] = useState([]);
   const [inputPrompt, setInputPrompt] = useState("");
@@ -89,6 +88,11 @@ const Chat = () => {
       // setInputMessage('');
     } catch (error) {
       console.error("Error sending message:", error);
+      if (error.response && error.response.status === 401) {
+        // Redirect to the plan page
+        setIsSubscribed(false);
+        navigate('/plan');
+      }
     } finally {
       setLoading(false);
     }

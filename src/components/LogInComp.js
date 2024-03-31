@@ -51,7 +51,7 @@ const LogInComp = ({setEmail, setIsAdmin}) => {
       );
       setEmail(true);
       setIsAdmin(response.data.isAdmin)
-      navigate('/generate-image');
+      navigate('/');
       // Handle success (e.g., redirect user)
     } catch (error) {
       console.error('Login error:', error.message);

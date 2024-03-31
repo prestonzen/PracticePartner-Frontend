@@ -30,6 +30,7 @@ function App() {
   const [emailAddress, setEmailAddress] = useState("");
   const [loading,setLoading] = useState(true);
   const [isAdmin,setIsAdmin] = useState(false);
+  const [isSubscribed,setIsSubscribed] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,12 +41,13 @@ function App() {
           // const content = await response.json();
           // console.log(response);
           if (response.data.email) {
-            console.log(response.data);
+            // console.log(response.data);
             setEmail(true);
             setEmailAddress(response.data.email);
-            console.log(response.data.email);
+            setIsSubscribed(response.data.isSubscribed);
+            // console.log(response.data.email);
             if(response.data.isAdmin){
-              console.log(response.data.isAdmin)
+              // console.log(response.data.isAdmin)
               setIsAdmin(true);
             }
           } else {
@@ -96,9 +98,9 @@ function App() {
           component={ImageGenerator}
           isAuthenticated={isAuthenticated}
         /> */}
-          <Route path="/generate-image" element={email? <ImageGenerator /> : <Navigate to="/login" />} />        
+          <Route path="/generate-image" element={email ? (isSubscribed ? <ImageGenerator setIsSubscribed={setIsSubscribed}/> : <Navigate to="/plan" />) : <Navigate to="/login" />} />        
           {/* <Route path="/chat" element={() => <Chat email={email}/>} /> */}
-          <Route path="/chat" element={email? <Chat /> : <Navigate to="/login" />} />
+          <Route path="/chat" element={email ? (isSubscribed ? <Chat setIsSubscribed={setIsSubscribed} /> : <Navigate to="/plan" />) : <Navigate to="/login" />} />
           <Route path="/account" element={email? <Account /> : <Navigate to="/login" />} />
           <Route path="/user-management" element={isAdmin? <UserManagement /> : <Navigate to="/generate-image" />} />
           <Route path="/ai-configuration" element={isAdmin? <AIconfiguration /> : <Navigate to="/login" />} />
