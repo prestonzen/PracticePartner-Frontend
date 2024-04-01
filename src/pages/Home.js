@@ -94,7 +94,7 @@ export default function Home() {
           </>
         }
         buttonText="Create your own logo now"
-        buttonLink="/chat"
+        buttonLink="/generate-image"
         imageSource="Logos.png"
         imageAlt="Logos Picture"
         textOnLeft={false}
@@ -222,7 +222,7 @@ export default function Home() {
       text="Join Practice Partner today and transform your entrepreneurial dream into reality. Our platform is here to guide
        you every step of the way."
         buttonText="Begin Your Success Story"
-        buttonLink="/logo-design"
+        buttonLink="/chat"
         centerAligned={true}
         buttonwidth={true}
       />

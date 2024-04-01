@@ -31,6 +31,7 @@ function App() {
   const [emailAddress, setEmailAddress] = useState('');
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +45,7 @@ function App() {
           // const content = await response.json();
           // console.log(response);
           if (response.data.email) {
-            console.log(response.data);
+            // console.log(response.data);
             setEmail(true);
             setEmailAddress(response.data.email);
             console.log(response.data.email);
@@ -135,7 +136,17 @@ function App() {
           {/* <Route path="/chat" element={() => <Chat email={email}/>} /> */}
           <Route
             path="/chat"
-            element={email ? <Chat /> : <Navigate to="/login" />}
+            element={
+              email ? (
+                isSubscribed ? (
+                  <Chat setIsSubscribed={setIsSubscribed} />
+                ) : (
+                  <Navigate to="/plan" />
+                )
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
           />
           <Route
             path="/account"

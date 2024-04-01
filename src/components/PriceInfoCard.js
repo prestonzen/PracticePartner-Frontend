@@ -11,6 +11,11 @@ const PriceInfoCard = ({
   buttonText,
   link
 }) => {
+
+  const sendEmail = () => {
+    window.open('mailto:info@practicepartner.ai', '_blank');
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 mx-4 h-full">
       <h2 className="text-2xl font-bold mb-4 text-center">{title}</h2>
@@ -51,6 +56,7 @@ const PriceInfoCard = ({
       ) : (
         <button 
           className="bg-primary text-white font-bold text-sm rounded-full px-6 py-3 hover:bg-primary-light transition-colors duration-300"
+          onClick={sendEmail}
         >
           {buttonText}
         </button>

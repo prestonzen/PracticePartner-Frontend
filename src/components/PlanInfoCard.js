@@ -36,6 +36,7 @@ function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
     }
     const stripePromise = await loadStripe(public_stripe_key);
     try {
+      console.log(emailAddress);
       const response = await fetch(
         "http://localhost:3000/create-stripe-session-subscription",
         {
@@ -44,9 +45,7 @@ function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
           // body: JSON.stringify([
           //   { item: "Online Video Editor", qty: "3", itemCode: "99" },
           // ]),
-          body: JSON.stringify({ lookup_key: lookupKey, email: emailAddress
-            // ,item: "Online Video Editor", qty: "3", itemCode: "99" 
-          }),
+          body: JSON.stringify({ lookup_key: lookupKey, email: emailAddress}),
         }
       );
   
