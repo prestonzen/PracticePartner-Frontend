@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, provider } from '../utlis/firebase';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-const LogInComp = ({setEmail, setIsAdmin}) => {
+import { toast } from 'react-toastify';
+
+const LogInComp = ({ setEmail, setIsAdmin }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -14,7 +16,7 @@ const LogInComp = ({setEmail, setIsAdmin}) => {
   const handleClick = async (e) => {
     try {
       const data = await signInWithPopup(auth, provider);
-      
+
       setEmail(true);
       navigate('/generate-image');
     } catch (error) {
@@ -23,7 +25,6 @@ const LogInComp = ({setEmail, setIsAdmin}) => {
     }
   };
 
-  
   const navigate = useNavigate();
 
   // if (isAuthenticated) {
@@ -37,6 +38,7 @@ const LogInComp = ({setEmail, setIsAdmin}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log('Before axios.post');
       const response = await axios.post(
         'http://localhost:3000/api/login',
         JSON.stringify(formData),
@@ -50,11 +52,23 @@ const LogInComp = ({setEmail, setIsAdmin}) => {
         }
       );
       setEmail(true);
-      setIsAdmin(response.data.isAdmin)
+      setIsAdmin(response.data.isAdmin);
       navigate('/generate-image');
+      toast.success('Login Successful');
       // Handle success (e.g., redirect user)
     } catch (error) {
-      console.error('Login error:', error.message);
+      if (error.message == 'Request failed with status code 422') {
+        toast.error('Email and password are required');
+      }
+      if (error.message == 'Request failed with status code 404') {
+        toast.error('User not found');
+      }
+      if (error.message == 'Request failed with status code 500') {
+        toast.error('User not found');
+      }
+      if (error.message == 'Request failed with status code 401') {
+        toast.error('Incorrect Password');
+      }
       // Handle error (e.g., show error message)
     }
   };
