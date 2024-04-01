@@ -16,9 +16,31 @@ const LogInComp = ({ setEmail, setIsAdmin }) => {
   const handleClick = async (e) => {
     try {
       const data = await signInWithPopup(auth, provider);
+      console.log(data.user);
+
+      const userData = {
+        name: data.user.displayName,
+        email: data.user.email,
+        // password: req.body.password,
+        isFree: true,
+        freePrompts: 10,
+      };
 
       setEmail(true);
       navigate('/generate-image');
+      const response = await axios.post(
+        'http://localhost:3000/api/checkAndStoreUser',
+
+        JSON.stringify(userData),
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true, // Set to true to include cookies in the request
+          credentials: 'include', // Indicates that CORS should include credentials
+        }
+      );
     } catch (error) {
       console.error('Error during login:', error);
       // Handle errors appropriately (e.g., display an error message)
@@ -38,7 +60,6 @@ const LogInComp = ({ setEmail, setIsAdmin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log('Before axios.post');
       const response = await axios.post(
         'http://localhost:3000/api/login',
         JSON.stringify(formData),
