@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { auth, provider } from '../utlis/firebase';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  onAuthStateChanged,
+} from 'firebase/auth';
 
 const SignUpComp = () => {
   const navigate = useNavigate();
@@ -19,20 +25,54 @@ const SignUpComp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { email, password } = formData;
     try {
-      const response = await axios.post(
-        'http://localhost:3000/api/signup',
-        // 'https://api.practicepartner.ai/api/signup',
-        formData
-      );
-      console.log('Signup successful:', response.data);
-      navigate('/login');
+      // navigate('/login');
       // Handle success (e.g., redirect user)
+      console.log('hello');
+
+      await createUserWithEmailAndPassword(auth, email, password).then(
+        async (result) => {
+          await sendEmailVerification(result.user);
+          console.log('Verification email sent!');
+
+          // Loop until email is verified
+          while (!result.user.emailVerified) {
+            // Check email verification status every second
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+
+            // Refresh the user object to get the latest emailVerified status
+            await result.user.reload();
+          }
+
+          console.log('User email is verified. Proceeding with signup.');
+
+          // Email is verified, proceed with login
+          console.log('User created successfully!');
+
+          // Making the API call to sign up
+          const response = await axios.post(
+            'http://localhost:3000/api/signup',
+            // 'https://api.practicepartner.ai/api/signup',
+            formData
+          );
+          console.log('Signup successful:', response.data);
+
+          // Navigate to login page
+          navigate('/login');
+        }
+      );
     } catch (error) {
-      console.error('Signup error:', error.message);
+      // console.error('Signup error:', error.message);
       // Handle error (e.g., show error message)
     }
   };
+
+  useEffect(() => {
+    auth.onAuthStateChanged((result) => {
+      console.log(result);
+    });
+  }, []);
 
   const [value, setValue] = useState('');
   // const { isAuthenticated, login, logout } = useContext(AuthContext);
