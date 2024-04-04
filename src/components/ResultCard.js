@@ -12,7 +12,7 @@ const ResultCard = ({ imageUrl }) => {
   const handleDownload = async () => {
     try {
       const response = await axios.get(
-        'https://cors-anywhere.herokuapp.com/${imagerl}'
+        `https://cors-anywhere.herokuapp.com/${imageUrl}`
       );
       const blob = new Blob([response.data], {
         type: response.headers['content-type'],

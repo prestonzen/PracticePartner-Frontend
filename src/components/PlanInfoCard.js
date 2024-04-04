@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 
 import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const public_stripe_key = process.env.REACT_APP_PUBLIC_STRIPE_KEY;
 
 function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
   const [selectedPeriod, setSelectedPeriod] = useState("Quarterly");
-  const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
 
   const handleSubscription = async () => {
@@ -18,8 +16,6 @@ function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
       navigate('/login');
     }else{
 
-      setUserEmail(emailAddress);
-      console.log(emailAddress);
     let lookupKey;
     switch (selectedPeriod) {
       case "Quarterly":

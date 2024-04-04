@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
+import { toast } from 'react-toastify';
 
 const Chat = ({setIsSubscribed}) => {
   const containerRef = useRef(null);
@@ -46,7 +47,7 @@ const Chat = ({setIsSubscribed}) => {
     // Call the fetchChatMessages function when the component mounts
     fetchChatMessages();
   
-  }, [])
+  },[])
 
   const handleSendMessage = async () => {
     setLoading(true);
@@ -91,6 +92,7 @@ const Chat = ({setIsSubscribed}) => {
       if (error.response && error.response.status === 401) {
         // Redirect to the plan page
         setIsSubscribed(false);
+        toast.error('Please subscribe to continue!');
         navigate('/plan');
       }
     } finally {

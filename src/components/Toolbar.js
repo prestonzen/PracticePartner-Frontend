@@ -482,13 +482,12 @@ const Toolbar = ({ setEmail, isAdmin, setIsAdmin, setEmailAddress }) => {
             </div>
           </div>
         )}
-
+        <hr className=" border-white" />
         <div
-          className={`flex items-center space-x-2 hover:bg-on-surface rounded-2xl px-2 py-1 mr-2 ${
+          className={`flex items-center hover:bg-on-surface rounded-2xl px-2 py-1 mr-2 ${
             isAdmin ? 'md:mt-56 sm:mt-6' : ''
           }`}
         >
-          <hr className=" border-white" />
           <svg
             className="w-5 h-5"
             viewBox="0 0 24 24"

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { auth, provider } from '../utlis/firebase';
+import { auth } from '../utlis/firebase';
 import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   sendEmailVerification,
-  onAuthStateChanged,
 } from 'firebase/auth';
 
 const SignUpComp = () => {
@@ -27,14 +26,12 @@ const SignUpComp = () => {
     e.preventDefault();
     const { email, password } = formData;
     try {
-      // navigate('/login');
-      // Handle success (e.g., redirect user)
-      console.log('hello');
+      
 
       await createUserWithEmailAndPassword(auth, email, password).then(
         async (result) => {
           await sendEmailVerification(result.user);
-          console.log('Verification email sent!');
+
 
           // Loop until email is verified
           while (!result.user.emailVerified) {
@@ -45,18 +42,13 @@ const SignUpComp = () => {
             await result.user.reload();
           }
 
-          console.log('User email is verified. Proceeding with signup.');
-
-          // Email is verified, proceed with login
-          console.log('User created successfully!');
-
           // Making the API call to sign up
           const response = await axios.post(
             'http://localhost:3000/api/signup',
             // 'https://api.practicepartner.ai/api/signup',
             formData
           );
-          console.log('Signup successful:', response.data);
+
 
           // Navigate to login page
           navigate('/login');
@@ -70,17 +62,17 @@ const SignUpComp = () => {
 
   useEffect(() => {
     auth.onAuthStateChanged((result) => {
-      console.log(result);
+      
     });
   }, []);
 
-  const [value, setValue] = useState('');
+
   // const { isAuthenticated, login, logout } = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
   const handleClick = async (e) => {
     try {
       const data = await signInWithPopup(auth, provider);
-      console.log(data.user);
+      
 
       const userData = {
         name: data.user.displayName,
@@ -92,7 +84,7 @@ const SignUpComp = () => {
 
       // setEmail(true);
       navigate('/generate-image');
-      const response = await axios.post(
+      await axios.post(
         'http://localhost:3000/api/checkAndStoreUser',
 
         JSON.stringify(userData),
@@ -111,9 +103,6 @@ const SignUpComp = () => {
     }
   };
 
-  useEffect(() => {
-    setValue(localStorage.getItem('email'));
-  });
 
   return (
     <div className="flex flex-col p-4 max-w-[603px] text-zinc-900">

@@ -42,15 +42,15 @@ function App() {
         );
 
         if (response.status === 200) {
-          // const content = await response.json();
-          // console.log(response);
+          
           if (response.data.email) {
-            // console.log(response.data);
+
             setEmail(true);
             setEmailAddress(response.data.email);
-            console.log(response.data.email);
+            setIsSubscribed(response.data.isSubscribed)
+            
             if (response.data.isAdmin) {
-              console.log(response.data.isAdmin);
+
               setIsAdmin(true);
             }
           } else {
@@ -119,7 +119,7 @@ function App() {
               email ? (
                 <Navigate to="/" />
               ) : (
-                <LogIn setEmail={setEmail} setIsAdmin={setIsAdmin} />
+                <LogIn setEmail={setEmail} setEmailAddress={setEmailAddress} setIsAdmin={setIsAdmin} />
               )
             }
           />
@@ -131,7 +131,17 @@ function App() {
         /> */}
           <Route
             path="/generate-image"
-            element={email ? <ImageGenerator /> : <Navigate to="/login" />}
+            element={
+              email ? (
+                isSubscribed ? (
+                  <ImageGenerator setIsSubscribed={setIsSubscribed} />
+                ) : (
+                  <Navigate to="/plan" />
+                )
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
           />
           {/* <Route path="/chat" element={() => <Chat email={email}/>} /> */}
           <Route

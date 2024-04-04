@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 function TextInputField({ label, id, type = "text" }) {
   return (
@@ -39,12 +40,12 @@ function PlanDetails({ plan, startDate, endDate }) {
           <p className="self-center text-sm leading-5">{endDate}</p>
         </article>
       </div>
-      <button
+      <Link to="/plan"
         className="flex justify-center items-center px-16 py-4 mt-6 max-w-full text-base font-semibold bg-primary rounded-xl text-slate-50 w-[250px] max-md:px-5"
         tabIndex="0"
       >
         Upgrade
-      </button>
+      </Link>
     </section>
   );
 }

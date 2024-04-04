@@ -1,5 +1,4 @@
 import React from 'react'
-import PriceInfoCard from '../components/PriceInfoCard'
 import PlanInfoCard from '../components/PlanInfoCard';
 
 const Plan = ({isLoggedIn ,emailAddress}) => {

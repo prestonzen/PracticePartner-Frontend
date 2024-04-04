@@ -1,22 +1,23 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+
 import { Link, useNavigate } from 'react-router-dom';
-import { auth, provider } from '../utlis/firebase';
+import { auth } from '../utlis/firebase';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
-const LogInComp = ({ setEmail, setIsAdmin }) => {
+const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
+  const navigate = useNavigate();
   // const { isAuthenticated, login, logout } = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
   const handleClick = async (e) => {
     try {
       const data = await signInWithPopup(auth, provider);
-      console.log(data.user);
+      
 
       const userData = {
         name: data.user.displayName,
@@ -28,7 +29,7 @@ const LogInComp = ({ setEmail, setIsAdmin }) => {
 
       setEmail(true);
       navigate('/generate-image');
-      const response = await axios.post(
+       await axios.post(
         'http://localhost:3000/api/checkAndStoreUser',
 
         JSON.stringify(userData),
@@ -46,12 +47,6 @@ const LogInComp = ({ setEmail, setIsAdmin }) => {
       // Handle errors appropriately (e.g., display an error message)
     }
   };
-
-  const navigate = useNavigate();
-
-  // if (isAuthenticated) {
-  //   navigate('/generate-image');
-  // }
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -74,20 +69,21 @@ const LogInComp = ({ setEmail, setIsAdmin }) => {
       );
       setEmail(true);
       setIsAdmin(response.data.isAdmin);
+      setEmailAddress(response.data.email);
       navigate('/generate-image');
       toast.success('Login Successful');
       // Handle success (e.g., redirect user)
     } catch (error) {
-      if (error.message == 'Request failed with status code 422') {
+      if (error.message === 'Request failed with status code 422') {
         toast.error('Email and password are required');
       }
-      if (error.message == 'Request failed with status code 404') {
+      if (error.message === 'Request failed with status code 404') {
         toast.error('User not found');
       }
-      if (error.message == 'Request failed with status code 500') {
+      if (error.message === 'Request failed with status code 500') {
         toast.error('User not found');
       }
-      if (error.message == 'Request failed with status code 401') {
+      if (error.message === 'Request failed with status code 401') {
         toast.error('Incorrect Password');
       }
       // Handle error (e.g., show error message)

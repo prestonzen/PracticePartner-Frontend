@@ -4,6 +4,7 @@ import { InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FadeLoader } from 'react-spinners';
+import { toast } from 'react-toastify';
 
 const override = {
   display: 'block',
@@ -24,43 +25,13 @@ const ImageGenerator = ({setIsSubscribed}) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   const fetchImages = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://localhost:3000/api/generate-image"
-  //       );
-  //       const responseData = response.data;
-
-  //       console.log(responseData[0].prompt);
-  //       setSelectedPrompt1(responseData[0].prompt);
-  //       setGeneratedImage(responseData[0].img1);
-  //       setGeneratedImage1(responseData[0].img2);
-  //       setGeneratedImage2(responseData[0].img3);
-  //       setGeneratedImage3(responseData[0].img4);
-  //       // Extract input messages from the response and update state
-  //       // responseData.forEach(image => {
-  //       //   setInputMessage(prevInputMessages => [...prevInputMessages, chat.question]);
-  //       //   setChatMessages(prevChatMessages => [...prevChatMessages, chat.answer]);
-  //       // });
-  //     } catch (error) {
-  //       console.error("Error fetching chat messages:", error);
-  //     }finally{
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   // Call the fetchImages function when the component mounts
-  //   fetchImages();
-  // }, []);
-
+  
   const handleGenerateImage = async () => {
     setLoading(true);
     try {
       // Make a POST request to the backend API
 
-      console.log(selectedPrompt1);
+      
 
       // const prompt = JSON.stringify("prompt":selectedPrompt1)
       // console.log(prompt)
@@ -79,17 +50,12 @@ const ImageGenerator = ({setIsSubscribed}) => {
       setGeneratedImage1(response.data[1]);
       setGeneratedImage2(response.data[2]);
       setGeneratedImage3(response.data[3]);
-      console.log(response);
-      console.log(response.data[0]);
-      console.log(generatedImage);
-      console.log(generatedImage1);
-      console.log(generatedImage2);
-      console.log(generatedImage3);
     } catch (error) {
       console.error('Error generating image:', error);
       if (error.response && error.response.status === 401) {
         // Redirect to the plan page
         setIsSubscribed(false);
+        toast.error('Please subscribe to continue!');
         navigate('/plan');
       }
     } finally {
