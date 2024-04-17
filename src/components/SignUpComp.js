@@ -9,6 +9,8 @@ import {
   sendEmailVerification,
 } from 'firebase/auth';
 
+const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
+
 const SignUpComp = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -44,8 +46,7 @@ const SignUpComp = () => {
 
           // Making the API call to sign up
           const response = await axios.post(
-            'http://localhost:3000/api/signup',
-            // 'https://api.practicepartner.ai/api/signup',
+            `${BACKEND_URL}/signup`,
             formData
           );
 
@@ -85,8 +86,7 @@ const SignUpComp = () => {
       // setEmail(true);
       navigate('/generate-image');
       await axios.post(
-        'http://localhost:3000/api/checkAndStoreUser',
-
+        `${BACKEND_URL}/checkAndStoreUser`,
         JSON.stringify(userData),
         {
           headers: {

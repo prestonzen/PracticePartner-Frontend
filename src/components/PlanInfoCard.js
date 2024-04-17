@@ -4,6 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useNavigate } from "react-router-dom";
 
 const public_stripe_key = process.env.REACT_APP_PUBLIC_STRIPE_KEY;
+// const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
 
 function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
   const [selectedPeriod, setSelectedPeriod] = useState("Quarterly");
@@ -34,7 +35,7 @@ function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
     try {
       console.log(emailAddress);
       const response = await fetch(
-        "http://localhost:3000/create-stripe-session-subscription",
+        "https://practice-partner-backend-nmo3.vercel.app/create-stripe-session-subscription",
         {
           method: "POST",
           headers: { "Content-Type": "Application/JSON" },

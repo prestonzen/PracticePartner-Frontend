@@ -26,6 +26,8 @@ import { PropagateLoader } from 'react-spinners';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
+
 function App() {
   const [email, setEmail] = useState(null);
   const [emailAddress, setEmailAddress] = useState('');
@@ -37,7 +39,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:3000/api/authenticate',
+          `${BACKEND_URL}/authenticate`,
           { withCredentials: true }
         );
 

@@ -6,6 +6,8 @@ import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 
+const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
+
 const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin }) => {
   const [formData, setFormData] = useState({
     email: '',
@@ -30,8 +32,7 @@ const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin }) => {
       setEmail(true);
       navigate('/generate-image');
        await axios.post(
-        'http://localhost:3000/api/checkAndStoreUser',
-
+        `${BACKEND_URL}/checkAndStoreUser`,
         JSON.stringify(userData),
         {
           headers: {
@@ -56,7 +57,7 @@ const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/login',
+        `${BACKEND_URL}/login`,
         JSON.stringify(formData),
         {
           headers: {

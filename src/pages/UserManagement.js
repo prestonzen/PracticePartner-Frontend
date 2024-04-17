@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
+
 function UserManagement() {
   const [userInfo, setUserInfo] = useState([
     {
@@ -18,7 +20,7 @@ function UserManagement() {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/user-management",
+          `${BACKEND_URL}/user-management`,
           {
             withCredentials: true,
             credentials: 'include'

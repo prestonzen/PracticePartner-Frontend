@@ -3,6 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
+
 const Toolbar = ({ setEmail, isAdmin, setIsAdmin, setEmailAddress }) => {
   const location = useLocation();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -34,7 +36,7 @@ const Toolbar = ({ setEmail, isAdmin, setIsAdmin, setEmailAddress }) => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        'http://localhost:3000/api/logout',
+        `${BACKEND_URL}/logout`,
         {},
         {
           withCredentials: true,

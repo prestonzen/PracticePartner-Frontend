@@ -12,6 +12,8 @@ const override = {
   borderColor: 'red',
 };
 
+const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
+
 const ImageGenerator = ({setIsSubscribed}) => {
   const [selectedValue, setSelectedValue] = useState('Generate from Text');
   const [selectedPrompt1, setSelectedPrompt1] = useState('');
@@ -36,8 +38,7 @@ const ImageGenerator = ({setIsSubscribed}) => {
       // const prompt = JSON.stringify("prompt":selectedPrompt1)
       // console.log(prompt)
       const response = await axios.post(
-        'http://localhost:3000/api/generate-image',
-        // 'https://api.practicepartner.ai/api/generate-image',
+        `${BACKEND_URL}/generate-image`,
         { prompt: selectedPrompt1 },
         {
           withCredentials: true,

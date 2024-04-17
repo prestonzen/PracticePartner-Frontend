@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
 import { toast } from 'react-toastify';
 
+const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
+
 const Chat = ({setIsSubscribed}) => {
   const containerRef = useRef(null);
 
@@ -18,7 +20,7 @@ const Chat = ({setIsSubscribed}) => {
   useEffect(() => {
     const fetchChatMessages = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/chat", { withCredentials: true });
+        const response = await axios.get(`${BACKEND_URL}/chat`,{ withCredentials: true });
   
         const responseData = response.data;
   
@@ -69,7 +71,7 @@ const Chat = ({setIsSubscribed}) => {
 
       // Make a POST request to the backend API
       const response = await axios.post(
-        "http://localhost:3000/api/chat",
+        `${BACKEND_URL}/chat`,
         { messages },
         {
           withCredentials: true,

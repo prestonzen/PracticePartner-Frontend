@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
+
 const Navbar = ({ loggedIn, setEmail, setIsAdmin, setEmailAddress }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -35,7 +37,7 @@ const Navbar = ({ loggedIn, setEmail, setIsAdmin, setEmailAddress }) => {
     try {
 
       await axios.post(
-        'http://localhost:3000/api/logout',
+        `${BACKEND_URL}/logout`,
         {},
         {
           withCredentials: true, 
