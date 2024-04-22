@@ -44,6 +44,8 @@ function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
           //   { item: "Online Video Editor", qty: "3", itemCode: "99" },
           // ]),
           body: JSON.stringify({ lookup_key: lookupKey, email: emailAddress}),
+          withCredntials: true,
+          credentials: 'include'
         }
       );
   
