@@ -40,7 +40,8 @@ function App() {
       try {
         const response = await axios.get(
           `${BACKEND_URL}/authenticate`,
-          { withCredentials: true }
+          { withCredentials: true, 
+            credentials: 'include', }
         );
 
         if (response.status === 200) {
