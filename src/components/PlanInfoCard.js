@@ -35,7 +35,8 @@ function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
     try {
       console.log(emailAddress);
       const response = await fetch(
-        "https://practice-partner-backend-nmo3.vercel.app/create-stripe-session-subscription",
+        // "https://practice-partner-backend-nmo3.vercel.app/create-stripe-session-subscription",
+        "https://www.api.practicepartner.ai/create-stripe-session-subscription",
         {
           method: "POST",
           headers: { "Content-Type": "Application/JSON" },
