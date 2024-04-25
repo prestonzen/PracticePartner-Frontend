@@ -71,7 +71,9 @@ const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin }) => {
       setEmail(true);
       setIsAdmin(response.data.isAdmin);
       setEmailAddress(response.data.email);
-      navigate('/generate-image');
+      if(response.data.isAdmin){      navigate('/user-management');}
+      else{navigate('/generate-image');}
+      
       toast.success('Login Successful');
       // Handle success (e.g., redirect user)
     } catch (error) {
