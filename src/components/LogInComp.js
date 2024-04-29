@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
 
-const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin }) => {
+const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin, setIsSubscribed }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -68,9 +68,11 @@ const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin }) => {
           credentials: 'include', // Indicates that CORS should include credentials
         }
       );
+      setIsSubscribed(response.data.isSubscribed);
       setEmail(true);
       setIsAdmin(response.data.isAdmin);
       setEmailAddress(response.data.email);
+      
       if(response.data.isAdmin){      navigate('/user-management');}
       else{navigate('/generate-image');}
       

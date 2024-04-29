@@ -122,7 +122,7 @@ function App() {
               email ? (
                 <Navigate to="/" />
               ) : (
-                <LogIn setEmail={setEmail} setEmailAddress={setEmailAddress} setIsAdmin={setIsAdmin} />
+                <LogIn setEmail={setEmail} setEmailAddress={setEmailAddress} setIsAdmin={setIsAdmin} setIsSubscribed={setIsSubscribed} />
               )
             }
           />
