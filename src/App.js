@@ -64,7 +64,11 @@ function App() {
           setEmail(false);
         }
       } catch (error) {
-        console.error('Error fetching data:', error.message);
+        if (error.response && error.response.status === 401) {
+          setEmail(false);
+      } else {
+          // console.error('Error fetching data:', error.message);
+      }
       } finally {
         setLoading(false);
       }

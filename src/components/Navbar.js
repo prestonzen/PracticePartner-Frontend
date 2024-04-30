@@ -55,7 +55,7 @@ const Navbar = ({ loggedIn, setEmail, setIsAdmin, setEmailAddress }) => {
   };
 
   return (
-    <nav className="bg-primary-container text-white py-4 px-6 flex justify-between items-center">
+    <nav className="bg-primary-container text-white py-4 px-6 md:px-12 flex justify-between items-center">
       {/* Left side with app name/logo */}
       <div className="flex items-center cursor-pointer" onClick={handleClick}>
         <img src="/logo.png" alt="Logo" className="h-16 w-16 mr-2" />{" "}
@@ -105,12 +105,12 @@ const Navbar = ({ loggedIn, setEmail, setIsAdmin, setEmailAddress }) => {
             </button>
           ) : (
             <>
-              <button className="bg-primary text-white font-bold max-md:font-semibold text-sm max-md:text-xs rounded-3xl px-6 max-md:px-3 py-2 max-md:py-1">
+              <button className="bg-primary text-white font-bold max-md:font-semibold text-sm max-md:text-xs rounded-3xl px-6 max-md:px-3 md:mx-2 py-2 max-md:py-1">
                 <Link to="/signup" className="hover:text-gray-400">
                   SignUp
                 </Link>
               </button>
-              <button className="bg-primary-container border font-bold max-md:font-semibold border-primary text-primary text-sm max-md:text-xs rounded-3xl px-6 max-md:px-3 py-2 max-md:py-1">
+              <button className="bg-primary-container border font-bold max-md:font-semibold border-primary text-primary text-sm max-md:text-xs md:mx-2 rounded-3xl px-6 max-md:px-3 py-2 max-md:py-1">
                 <Link to="/login" className="hover:text-gray-400">
                   LogIn
                 </Link>
