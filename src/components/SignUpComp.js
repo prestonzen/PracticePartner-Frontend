@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { auth } from '../utlis/firebase';
 import {
   signInWithPopup,
@@ -9,7 +10,7 @@ import {
   sendEmailVerification,
 } from 'firebase/auth';
 
-const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const SignUpComp = () => {
   const navigate = useNavigate();
@@ -28,12 +29,10 @@ const SignUpComp = () => {
     e.preventDefault();
     const { email, password } = formData;
     try {
-      
-
       await createUserWithEmailAndPassword(auth, email, password).then(
         async (result) => {
           await sendEmailVerification(result.user);
-
+          toast.success('Verification email sent!');
 
           // Loop until email is verified
           while (!result.user.emailVerified) {
@@ -45,14 +44,11 @@ const SignUpComp = () => {
           }
 
           // Making the API call to sign up
-          const response = await axios.post(
-            `${BACKEND_URL}/signup`,
-            formData
-          );
-
+          const response = await axios.post(`${BACKEND_URL}/signup`, formData);
 
           // Navigate to login page
           navigate('/login');
+          toast.success('Signup successful! Please login to continue.');
         }
       );
     } catch (error) {
@@ -62,18 +58,14 @@ const SignUpComp = () => {
   };
 
   useEffect(() => {
-    auth.onAuthStateChanged((result) => {
-      
-    });
+    auth.onAuthStateChanged((result) => {});
   }, []);
-
 
   // const { isAuthenticated, login, logout } = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
   const handleClick = async (e) => {
     try {
       const data = await signInWithPopup(auth, provider);
-      
 
       const userData = {
         name: data.user.displayName,
@@ -102,7 +94,6 @@ const SignUpComp = () => {
       // Handle errors appropriately (e.g., display an error message)
     }
   };
-
 
   return (
     <div className="flex flex-col p-4 max-w-[603px] text-zinc-900">
