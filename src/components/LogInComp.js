@@ -24,14 +24,10 @@ const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin, setIsSubscribed }) =>
       const userData = {
         name: data.user.displayName,
         email: data.user.email,
-        // password: req.body.password,
-        isFree: true,
-        freePrompts: 10,
       };
 
-      setEmail(true);
-      navigate('/generate-image');
-       await axios.post(
+
+      const response = await axios.post(
         `${BACKEND_URL}/checkAndStoreUser`,
         JSON.stringify(userData),
         {
@@ -43,9 +39,18 @@ const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin, setIsSubscribed }) =>
           credentials: 'include', 
         }
       );
+      setIsSubscribed(response.data.isSubscribed);
+      setEmail(true);
+      setIsAdmin(response.data.isAdmin);
+      setEmailAddress(response.data.email);
+      
+      if(response.data.isAdmin){      navigate('/user-management');}
+      else{navigate('/chat');}
+      
+      toast.success('Login Successful');
     } catch (error) {
       console.error('Error during login:', error);
-      // Handle errors appropriately (e.g., display an error message)
+      toast.error('Error occured! Please try again later!');
     }
   };
 
@@ -74,7 +79,7 @@ const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin, setIsSubscribed }) =>
       setEmailAddress(response.data.email);
       
       if(response.data.isAdmin){      navigate('/user-management');}
-      else{navigate('/generate-image');}
+      else{navigate('/chat');}
       
       toast.success('Login Successful');
       // Handle success (e.g., redirect user)
@@ -100,9 +105,9 @@ const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin, setIsSubscribed }) =>
         Log In
       </div>
       <div className=" flex justify-center mt-2 text-slate-900">
-        New to Practice Partner? {'  '}
+      <span className="md:mr-2 max-md:mr-1">New to Practice Partner?</span>
         <Link to="/signup">
-          <span className="font-bold"> Sign up here!</span>
+          <span className="font-bold"> Sign Up here!</span>
         </Link>
       </div>
       <div className="flex flex-col p-6 mt-2 text-base font-semibold rounded-xl bg-slate-600 max-md:px-5 max-md:max-w-full">
@@ -151,7 +156,7 @@ const LogInComp = ({ setEmail,setEmailAddress, setIsAdmin, setIsSubscribed }) =>
               className="my-auto w-3.5 aspect-square"
               alt="Google Logo"
             />
-            <div className="grow text-left pl-4">Sign up with Google</div>
+            <div className="grow text-left pl-4">Sign Up with Google</div>
           </button>
         </div>
       </div>

@@ -107,12 +107,12 @@ const Navbar = ({ loggedIn, setEmail, setIsAdmin, setEmailAddress }) => {
             <>
               <button className="bg-primary text-white font-bold max-md:font-semibold text-sm max-md:text-xs rounded-3xl px-6 max-md:px-3 md:mx-2 py-2 max-md:py-1">
                 <Link to="/signup" className="hover:text-gray-400">
-                  SignUp
+                  Sign Up
                 </Link>
               </button>
               <button className="bg-primary-container border font-bold max-md:font-semibold border-primary text-primary text-sm max-md:text-xs md:mx-2 rounded-3xl px-6 max-md:px-3 py-2 max-md:py-1">
                 <Link to="/login" className="hover:text-gray-400">
-                  LogIn
+                  Log In
                 </Link>
               </button>
             </>
