@@ -284,11 +284,12 @@ const Toolbar = ({ setEmail, isAdmin, setIsAdmin, setEmailAddress }) => {
                     />
                   </g>
                 </svg>
-              </div>
-            </div>
-            <Link to="/" onClick={handleLogout} className=" text-md">
+                <Link to="/" onClick={handleLogout} className=" text-md">
               Log Out
             </Link>
+              </div>
+            </div>
+
           </div>
         )}
       </div>
