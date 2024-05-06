@@ -7,7 +7,7 @@ function UserManagement() {
   const [userInfo, setUserInfo] = useState([
     {
       mail: "",
-      startDate: "1",
+      startDate: "",
       expirationDate: "",
       subscriptionTerm: "",
       paymentStatus: "",
