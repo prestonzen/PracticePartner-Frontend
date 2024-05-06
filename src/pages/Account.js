@@ -1,5 +1,8 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function TextInputField({ label, id, type = "text" }) {
   return (
@@ -128,7 +131,37 @@ function AccountCancellationInfo() {
   );
 }
 
+const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
 function Account() {
+  const [pageLoading, setPageLoading] = useState(true);
+  const [subscriptionTerm, setSubscriptionTerm] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchProfileInfo = async () => {
+      try {
+        const response = await axios.get(`${BACKEND_URL}/profile`,{ withCredentials: true });
+  
+        const responseData = response.data;
+        
+        setSubscriptionTerm(responseData.subscriptionTerm);
+        setStartDate(responseData.startDate);
+        setEndDate(responseData.endDate)
+        
+      } catch (error) {
+        toast.error("Error fetching profile info");
+        if (error.response && error.response.status === 401) {
+          // Redirect to the login page
+          navigate('/login');
+        }
+      }finally{
+        setPageLoading(false);
+      }
+    };
+    fetchProfileInfo();
+  
+  },[])
   return (
     <div className="flex flex-col space-y-8 md:pl-12 p-4 mb-4">
       <form className="flex flex-col w-[90%] p-6 text-base rounded-xl bg-secondary text-slate-50">
@@ -170,9 +203,9 @@ function Account() {
       </form>
       <div className="my-8 mb-12">
         <PlanDetails
-          plan="Your Plan"
-          startDate="Start Date"
-          endDate="Expiration Date"
+          plan={subscriptionTerm}
+          startDate={startDate}
+          endDate={endDate}
         />
       </div>
       <div>
