@@ -119,6 +119,7 @@ const SignUpComp = () => {
               id="email"
               name="email"
               placeholder="Email"
+              required
               value={formData.email}
               onChange={handleChange}
               className="appearance-none border-none bg-transparent w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
@@ -131,8 +132,12 @@ const SignUpComp = () => {
               name="password"
               placeholder="Password"
               value={formData.password}
+              required
               onChange={handleChange}
               className="appearance-none border-none bg-transparent w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+              minLength="8"
+              pattern="^(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$" 
+              title="Password must be at least 8 characters long & include one number and one character"
             />
           </div>
           <div className="justify-center items-start py-4 pr-16 pl-6 mt-4 whitespace-nowrap rounded-xl bg-slate-50 max-md:px-5 max-md:max-w-full">
@@ -141,9 +146,13 @@ const SignUpComp = () => {
               id="confirm-password"
               name="confirmPassword"
               placeholder="Confirm Password"
+              required
               value={formData.confirmPassword}
               onChange={handleChange}
               className="appearance-none border-none bg-transparent w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+              minLength="8"
+              pattern="^(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$" 
+              title="Password must be at least 8 characters long & include one number and one character"
             />
           </div>
           <button
