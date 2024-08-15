@@ -85,8 +85,8 @@ const SignUpComp = () => {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
-          withCredentials: true, // Set to true to include cookies in the request
-          credentials: 'include', // Indicates that CORS should include credentials
+          withCredentials: true, 
+          credentials: 'include', 
         }
       );
     } catch (error) {

@@ -7,7 +7,7 @@ const public_stripe_key = process.env.REACT_APP_PUBLIC_STRIPE_KEY;
 // const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
 
 function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
-  const [selectedPeriod, setSelectedPeriod] = useState("Quarterly");
+  const [selectedPeriod, setSelectedPeriod] = useState("Monthly");
   const navigate = useNavigate();
 
   const handleSubscription = async () => {
@@ -19,26 +19,25 @@ function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
 
     let lookupKey;
     switch (selectedPeriod) {
-      case "Quarterly":
-        lookupKey = "quarterly";
+      case "Monthly":
+        lookupKey = "monthly";
         break;
       case "Bi-Annually":
-        lookupKey = "biannual";
+        lookupKey = "biannually";
         break;
       case "Annually":
-        lookupKey = "annual";
+        lookupKey = "yearly";
         break;
       default:
-        lookupKey = "quarterly"; // Set a default value or handle error case
+        lookupKey = "monthly"; // Set a default value or handle error case
     }
     const stripePromise = await loadStripe(public_stripe_key);
     try {
       console.log(emailAddress);
       const response = await fetch(
-        // "https://practice-partner-backend-nmo3.vercel.app/create-stripe-session-subscription",
-        "https://practice-partner-backend-chi.vercel.app/create-stripe-session-subscription",
-        // "http://localhost:3000/create-stripe-session-subscription",
-        // "https://www.api.practicepartner.ai/create-stripe-session-subscription",
+        // "https://practice-partner-backend-chi.vercel.app/create-stripe-session-subscription",
+        "http://localhost:3000/create-stripe-session-subscription",
+
         {
           method: "POST",
           headers: { "Content-Type": "Application/JSON" },
@@ -79,21 +78,21 @@ function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
         <div className="flex gap-3 justify-center py-3 px-2 text-2xl leading-8 whitespace-nowrap bg-sky-50 rounded-xl max-md:flex-wrap max-md:max-w-full">
           <div
             className={`flex flex-col flex-1 justify-center font-bold ${
-              selectedPeriod === "Quarterly"
+              selectedPeriod === "Monthly"
                 ? "text-slate-50"
                 : "text-secondary"
             }`}
           >
             <button
               className={`justify-center px-16 py-5 rounded-xl max-md:px-5 ${
-                selectedPeriod === "Quarterly"
+                selectedPeriod === "Monthly"
                   ? "bg-primary"
                   : "bg-secondary-container"
               }`}
-              onClick={() => handleClick("Quarterly")}
+              onClick={() => handleClick("Monthly")}
             >
               {" "}
-              Quarterly{" "}
+              Monthly{" "}
             </button>
           </div>
           <div
@@ -137,7 +136,7 @@ function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
           {" "}
           Practice Partner{" "}
           <span className="font-extrabold">
-            {selectedPeriod === "Quarterly" && "3 months"}
+            {selectedPeriod === "Monthly" && "1 month"}
             {selectedPeriod === "Bi-Annually" && "6 months"}
             {selectedPeriod === "Annually" && "12 months"}
           </span>{" "}
@@ -170,18 +169,18 @@ function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
             <div className="flex flex-col grow max-md:mt-10">
               <div className="flex flex-col md:self-end max-md:self-center md:text-right max-md:text-center">
                 <div className="text-6xl text-sky-700 leading-[64px] max-md:text-4xl">
-                  {selectedPeriod === "Quarterly" && "$350"}
-                  {selectedPeriod === "Bi-Annually" && "$600"}
-                  {selectedPeriod === "Annually" && "$980"}
+                  {selectedPeriod === "Monthly" && "$47"}
+                  {selectedPeriod === "Bi-Annually" && "$225"}
+                  {selectedPeriod === "Annually" && "$395"}
                 </div>
                 <p className="self-start mt-2 ml-4 text-sm leading-5 text-zinc-700 max-md:ml-2.5">
-                  Paid every {selectedPeriod === "Quarterly" && "3 months"}
+                  Paid every {selectedPeriod === "Monthly" && "1 month"}
                   {selectedPeriod === "Bi-Annually" && "6 months"}
                   {selectedPeriod === "Annually" && "12 months"}
                 </p>
                 <p className="self-center mt-2 ml-4 text-sm leading-5 text-zinc-700 max-md:ml-2.5">
-                  {selectedPeriod === "Quarterly" && ""}
-                  {selectedPeriod === "Bi-Annually" && "14% Discount"}
+                  {selectedPeriod === "Monthly" && ""}
+                  {selectedPeriod === "Bi-Annually" && "20% Discount"}
                   {selectedPeriod === "Annually" && "30% Discount"}
                 </p>
               </div>

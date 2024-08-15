@@ -43,8 +43,8 @@ export default function Pricing() {
               subtitle="Operate with expertise at your fingertips"
               text="Your comprehensive toolkit for establishing a successful practice. Unlimited access to Practice Partner's capabilities 
         equipping you with essential tools and support for building a strong, sustainable business."
-              pricing={["$350", "$600", "$980"]}
-              months={["3 months", "6 months", "12 months"]}
+              pricing={["$47", "$225", "$395"]}
+              months={["per Month", "6 months", "12 months"]}
               discounts={["", "20% discount", "30% discount"]}
               buttonText="Get Started"
               link="/plan"

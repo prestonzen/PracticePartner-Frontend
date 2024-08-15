@@ -31,6 +31,24 @@ export default function Home() {
         imageAlt="Chatting Picture"
         textOnLeft={true}
       />
+      <h2 className="font-semibold md:text-5xl max-sm:text-3xl sm:mb-16 max-sm:mb-12 text-center">
+      Innovative AI Note Assistant Browser Extension
+        </h2>
+      <SectionWithTextAndPicture
+        title=""
+        subtitle="HIPAA Compliant AI Note Solution"
+        text="Experience a new era in medical documentation with our Innovative AI Note Assistant Browser Extension for Google Chrome.
+        Designed specifically for health providers, our cutting-edge tool seamlessly integrates into your workflow, transforming the way you create clinical notes.
+        This HIPAA-compliant extension leverages advanced artificial intelligence to summarize your medical notes efficiently, generating comprehensive and accurate
+        notes ready for immediate insertion into patient charts.
+
+        Join the future of healthcare documentation today with our Innovative AI Note Assistant Browser Extension, and watch your practice thrive."
+        buttonText="Get Started"
+        buttonLink="/plan"
+        imageSource="prompt.png"
+        imageAlt="Prompt Picture"
+        textOnLeft={true}
+      />
       <SectionWithTextAndPicture
         title="Logo Generation"
         subtitle="Unleash Your Brand's Identity"
@@ -176,8 +194,8 @@ export default function Home() {
               subtitle="Operate with expertise at your fingertips"
               text="Your comprehensive toolkit for establishing a successful practice. Unlimited access to Practice Partner's capabilities 
         equipping you with essential tools and support for building a strong, sustainable business."
-              pricing={["$350", "$600", "$980"]}
-              months={["3 months", "6 months", "12 months"]}
+              pricing={["$47", "$225", "$395"]}
+              months={["per Month", "6 months", "12 months"]}
               discounts={["", "20% discount", "30% discount"]}
               buttonText="Get Started"
               link="/plan"
