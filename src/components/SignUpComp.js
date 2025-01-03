@@ -27,33 +27,45 @@ const SignUpComp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = formData;
+    const { email, password, confirmPassword, name } = formData;
+    
+    // Basic validation
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+  
     try {
-      await createUserWithEmailAndPassword(auth, email, password).then(
-        async (result) => {
-          await sendEmailVerification(result.user);
-          toast.success('Verification email sent!');
-
-          // Loop until email is verified
-          while (!result.user.emailVerified) {
-            // Check email verification status every second
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-
-            // Refresh the user object to get the latest emailVerified status
-            await result.user.reload();
-          }
-
-          // Making the API call to sign up
-          const response = await axios.post(`${BACKEND_URL}/signup`, formData);
-
-          // Navigate to login page
-          navigate('/login');
-          toast.success('Signup successful! Please login to continue.');
+      // First create the user in Firebase
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await sendEmailVerification(userCredential.user);
+      
+      // Then create the user in your backend
+      const response = await axios.post(
+        `${BACKEND_URL}/api/signup`, 
+        { email, password, name },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
       );
+  
+      if (response.status === 201) {
+        toast.success('Account created successfully! Please verify your email and login.');
+        navigate('/login');
+      }
     } catch (error) {
-      // console.error('Signup error:', error.message);
-      // Handle error (e.g., show error message)
+      if (error.code === 'auth/email-already-in-use') {
+        toast.error('Email already in use');
+      } else if (error.code === 'auth/weak-password') {
+        toast.error('Password should be at least 6 characters');
+      } else if (error.code === 'auth/invalid-email') {
+        toast.error('Invalid email address');
+      } else {
+        toast.error('Error creating account. Please try again.');
+      }
+      console.error('Signup error:', error);
     }
   };
 
