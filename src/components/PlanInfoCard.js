@@ -35,9 +35,7 @@ function PlanInfoCard({ planFeatures, isLoggedIn, emailAddress }) {
     try {
       console.log(emailAddress);
       const response = await fetch(
-        // "https://practice-partner-backend-chi.vercel.app/create-stripe-session-subscription",
-        "http://localhost:3000/create-stripe-session-subscription",
-
+        `${process.env.REACT_APP_BACKEND_URL}/create-stripe-session-subscription`,
         {
           method: "POST",
           headers: { "Content-Type": "Application/JSON" },
